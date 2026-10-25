@@ -2,7 +2,8 @@
 
 # Android Phone Control
 
-A voice-controlled Gemini agent that drives an Android phone — built so blind and low-vision users can operate any Android app, not just native applications.
+A voice-controlled Gemini agent that drives an Android phone — built so blind and low-vision users can operate any Android app, not just native applications. 
+*Inspired by bryanrg22/ios-agent_automation_info
 
 The everyday target is ChatGPT mobile -> authenticated self-hosted server -> Android companion service. Terminal commands, the emulator, and local MCP clients are development tools. Normal use needs no cable or foreground companion screen; the Windows server must stay running. Background availability and mobile authentication are implemented. Independent server-side AI task execution remains a future milestone.
 
