@@ -1,4 +1,4 @@
-# Android Phone Control
+# Agentic Automation on Android
 
 A self-hosted project that lets a person ask the official ChatGPT mobile app to perform tasks on their own Android phone, following the original iPhone Phone Control project's user experience. Initial device target: Samsung Galaxy S23+ and newer phones. The companion service runs on the phone; the self-hosted server coordinates execution. See docs/architecture.md for the product contract and remaining milestones.
 
