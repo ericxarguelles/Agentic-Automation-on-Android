@@ -1,6 +1,6 @@
 ![Gemini — Agentic Automation on Android by Eric Xavier Arguelles](gemini-android-banner.png)
 
-# Android Phone Control
+# Agentic Automation on Android
 
 A voice-controlled Gemini agent that drives an Android phone — built so blind and low-vision users can operate any Android app, not just native applications. 
 *Inspired by bryanrg22/ios-agent_automation_info
