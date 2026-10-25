@@ -5,6 +5,10 @@
 A voice-controlled Gemini agent that drives an Android phone — built so blind and low-vision users can operate any Android app, not just native applications. 
 *Inspired by bryanrg22/ios-agent_automation_info
 
+**What it does
+Hold the Android's Side Button, speak a task — "Open my most recent recruiter message on LinkedIn" — and Gemini takes over the physical phone: looking at the screen, tapping, typing, scrolling, and swiping through ~22*** tool primitives, while AVSpeechSynthesizer narrates every step out loud. A Node.js agent drives the device over USB through the phone's native AccessibilityService; a Kotlin companion app paints live progress into the Dynamic Island.
+
+
 The everyday target is ChatGPT mobile -> authenticated self-hosted server -> Android companion service. Terminal commands, the emulator, and local MCP clients are development tools. Normal use needs no cable or foreground companion screen; the Windows server must stay running. Background availability and mobile authentication are implemented. Independent server-side AI task execution remains a future milestone.
 
 ## Project layout
