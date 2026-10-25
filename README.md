@@ -1,4 +1,4 @@
-![Gemini — Agentic Automation on Android by Eric Xavier Arguelles](docs/images/gemini-android-banner.png)
+![Gemini — Agentic Automation on Android by Eric Xavier Arguelles](gemini-android-banner.png)
 
 # Android Phone Control
 
