@@ -32,7 +32,7 @@ These are emulator UI previews using a synthetic task. They are not benchmark re
 - “Open my conversation with Alex and read the latest three messages, identifying the sender.”
 - “Open Spotify and play a specific song.”
 - “Check a value first, then act only if my condition is met.”
-- “Stop phone control.”
+- “Open Gmail and read out the latest email I've received.”
 
 These illustrate supported workflows, not a guarantee that every app exposes usable controls. A request to read an email or message opens the body and scrolls through its available text; inaccessible portions must be reported.
 
