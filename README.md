@@ -40,6 +40,50 @@ These are emulator UI previews using a synthetic task. They are not benchmark re
 
 These illustrate supported workflows, not a guarantee that every app exposes usable controls. A request to read an email or message opens the body and scrolls through its available text; inaccessible portions must be reported.
 
+## When to use it, and when not to
+
+Android Agent reads accessible screen content and operates your phone through taps, typing, scrolling, and swipes. Its strongest use cases involve navigating several screens, completing multiple actions across apps, or checking information before deciding what to do next.
+
+Direct integrations and built-in assistants can be more convenient for simple tasks. Android Agent is useful when the work requires interacting with the phone’s interface. Completion time varies by task, connection, assistant, and app; we haven’t measured a typical time per step yet.
+
+| You want to… | Better to use | Why |
+| --- | --- | --- |
+| Read or search email, check your calendar, or find a file when a direct integration is available | A connected email, calendar, or file tool | It can retrieve structured information without navigating screens |
+| Set a timer, ask about the weather, or perform a supported one-step action | Your phone’s built-in assistant | Fewer interactions and less setup |
+| Work with files or applications on your computer | A desktop tool or agent | It operates directly where the work is |
+| Enter passwords, authentication codes, or payment details | Handle these yourself | Password fields are excluded, and sensitive information should stay under your control |
+| Navigate several screens deep in Android Settings | **Android Agent** | It can follow a sequence of menus, inspect the current settings, and make requested changes |
+| Complete several actions across different phone apps | **Android Agent** | One request can describe the sequence instead of requiring you to navigate each app manually |
+| Use an app without a suitable direct integration | **Android Agent** | It can interact with the app’s accessible interface |
+| Check something first, then act only if a condition is met | **Android Agent** | It can inspect the result and choose the next action based on your instruction |
+| Operate your phone hands-free through a connected voice assistant | **Android Agent** | It can carry out supported screen-based tasks through spoken requests |
+
+App accessibility and Android permissions can limit what the agent can do. Your phone must be unlocked, Android Agent must be connected, and your self-hosted server must remain online. Multi-step capability does not guarantee that every workflow will succeed.
+
+### Requests that fit
+
+- *“Open Settings and turn off notifications for these three games.”*  
+  Navigate each app’s notification settings and verify the requested changes.
+
+- *“Open Instagram and read the latest three messages from Alex, clearly identifying who sent each one. Then open Spotify and play my selected playlist.”*  
+  Complete a sequence across two apps from one request.
+
+- *“Open Instagram and check my follower count. If it’s over 1,000, message Alex ‘We reached the goal!’ Otherwise, just tell me the count.”*  
+  Read information first, then act only when the condition is satisfied.
+
+- *“Open my latest email from the recruiter and read the entire body aloud. Scroll and expand the message if necessary, and tell me if any part is inaccessible.”*  
+  Read beyond an inbox preview while reporting any missing content.
+
+- *“Open the Microsoft app, check which account is selected, and take me to the account-switching screen. Stop before entering a password.”*  
+  Navigate a troubleshooting workflow with a clear stopping point.
+
+- *“Open Settings, find this app’s permissions, and tell me which permissions are currently enabled. Don’t change anything.”*  
+  Inspect a setting several screens deep without modifying it.
+
+Start with short, clearly scoped tasks. Larger requests may need to be split up because phone-control sessions have a five-minute maximum.
+
+The rule of thumb: **use Android Agent when the task needs the phone’s interface, involves several steps or apps, and would otherwise require repeated manual navigation.**
+
 ## How it works
 
 **The assistant is the planner.** The server currently does not run its own model or durable background task worker. The first launch or screen read establishes a session automatically when owner-enabled availability is connected. Screen-bound actions use fresh, single-use snapshots. The phone acknowledges actions and returns observations for verification.
