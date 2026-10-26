@@ -6,7 +6,7 @@ Each user runs their own server and generates their own credentials. You do not 
 
 Download [AndroidAgent-0.8.0.apk](../AndroidAgent-0.8.0.apk) onto your Android 13+ phone and install it.
 
-No Android Studio or app-building tools are needed when using this APK. If updating an existing installation, install over it rather than uninstalling first to preserve saved setup.
+No Android Studio or app-building tools are needed when using this APK.
 
 ## 2. Prepare your Windows computer
 
