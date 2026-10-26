@@ -47,7 +47,19 @@ In Android Agent Settings:
 3. Enable Android Agent’s accessibility and notification permissions.
 4. Connect and confirm the server card says Connected.
 
-## 6. Connect your assistant
+## 6. Install ChatGPT and set it as your digital assistant
+
+1. Install the official [ChatGPT app from Google Play](https://play.google.com/store/apps/details?id=com.openai.chatgpt). Check that the publisher is **OpenAI**.
+2. Open ChatGPT and sign in to the account you will use with Android Agent.
+3. Open your phone’s **Settings → Apps → Default apps → Digital assistant app**. On some phones, this is under **Choose default apps**.
+4. Tap **Default digital assistant app** and select **ChatGPT**.
+5. Use your phone’s assistant shortcut to check that ChatGPT opens. The shortcut depends on your phone and navigation settings.
+
+If you cannot find the setting, search Settings for **digital assistant**. If ChatGPT is missing from the available choices, update the ChatGPT app, open it once, and check again.
+
+Selecting ChatGPT as the default assistant does not connect it to Android Agent. Complete the server connection in the next section before testing phone control.
+
+## 7. Connect your assistant
 
 Add your server’s public HTTPS address ending in `/mcp` as an OAuth MCP connection.
 
@@ -55,7 +67,7 @@ Complete the approval flow using your owner approval key only on your own server
 
 Refresh the tools and start a new chat.
 
-## 7. Test it
+## 8. Test it
 
 Ask the assistant to open Settings and read the Android version. Verify that Stop works before trying more involved tasks.
 
