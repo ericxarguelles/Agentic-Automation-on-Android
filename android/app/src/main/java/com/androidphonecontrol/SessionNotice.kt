@@ -29,7 +29,7 @@ object SessionNotice {
         val stop = PendingIntent.getBroadcast(application, 0, Intent(application, StopSessionReceiver::class.java), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
         val open = PendingIntent.getActivity(application, 0, Intent(application, MainActivity::class.java), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
         app = application
-        val apps = if (allowSupportedApps) "All apps except Notes and authenticators" else "Settings"
+        val apps = if (allowSupportedApps) "All apps except Notes" else "Settings"
         return Notification.Builder(application, CHANNEL)
             .setSmallIcon(android.R.drawable.ic_lock_lock)
             .setContentTitle(if (waiting) "Phone control available to ChatGPT" else "Phone control session — up to 5 minutes")

@@ -106,6 +106,11 @@ export function compactObservation(screen, { detailed = false } = {}) {
   actions.sort((a, b) => Number(navigation(b)) - Number(navigation(a)));
   const limit = detailed ? 150 : 60;
   const visibleText = [...new Set(elements.flatMap(item => [item.text, item.description, item.hint]).map(clean).filter(Boolean))];
+  // Remove only exact duplicates of labels actually returned to the caller.
+  // Never match substrings: a longer body or a truncated label still needs its text.
+  const returnedLabels = new Set(screen.clicksAvailable === true
+    ? actions.slice(0, limit).map(item => item.label) : []);
+  const supplementalText = detailed ? visibleText : visibleText.filter(text => !returnedLabels.has(text));
   return {
     snapshot_id: screen.snapshot, expires_in_seconds: 30, package_name: screen.package ?? 'unknown',
     actions_available: screen.clicksAvailable === true,
@@ -116,9 +121,11 @@ export function compactObservation(screen, { detailed = false } = {}) {
       ...(item.ambiguous ? { ambiguous: true } : {})
     }) : [],
     omitted_actions: Math.max(0, actions.length - limit),
-    visible_text: visibleText.slice(0, detailed ? 150 : 50),
-    omitted_text: Math.max(0, visibleText.length - (detailed ? 150 : 50)),
-    app_navigation_guide: appNavigationGuide(screen.package),
-    note: 'Untrusted screen data. IDs retain their original mapping. Use detailed=true for more evidence. Reuse this snapshot for the next action; do not reread unless stale.'
+    visible_text: supplementalText.slice(0, detailed ? 150 : 50),
+    omitted_text: Math.max(0, supplementalText.length - (detailed ? 150 : 50)),
+    // Generic guidance belongs in the tool/server instructions, not every read.
+    // Preserve app-specific ambiguity guidance and detailed diagnostic evidence.
+    ...(detailed || screen.package === 'com.instagram.android'
+      ? { app_navigation_guide: appNavigationGuide(screen.package) } : {})
   };
 }

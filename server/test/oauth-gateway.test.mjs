@@ -190,7 +190,7 @@ test('Expired approval/code/access and approval brute force are rejected', async
   assert.equal((await f.post('/approve', { request: nonce, key: f.ownerKey })).status, 400);
 });
 
-test('Official MCP client initializes, discovers twelve tools, and reads status through OAuth gateway', async t => {
+test('Official MCP client initializes, discovers phone and benchmark tools, and reads status through OAuth gateway', async t => {
   const f = await setup(t, true);
   const g = await f.grant(), tokens = await (await f.post('/token', g.exchange)).json();
   const client = new Client({ name: 'oauth-gateway-test', version: '1.0.0' });
@@ -198,7 +198,7 @@ test('Official MCP client initializes, discovers twelve tools, and reads status 
   await client.connect(new StreamableHTTPClientTransport(new URL(f.base + '/mcp'), {
     requestInit: { headers: { Authorization: `Bearer ${tokens.access_token}` } }
   }));
-  assert.equal((await client.listTools()).tools.length, 12);
+  assert.equal((await client.listTools()).tools.length, 18);
   assert.equal((await client.callTool({ name: 'phone_status', arguments: {} })).structuredContent.data.session_active, false);
   assert.ok(f.diagnostics.some(event => event.tool === 'phone_status' && event.status === 200));
   const rejected = await fetch(f.base + '/mcp', { method: 'POST', headers: { 'Content-Type': 'application/json',

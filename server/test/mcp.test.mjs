@@ -6,6 +6,43 @@ import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import { createConnectionServer } from '../src/connection-server.mjs';
 import { createMcpHttpServer } from '../src/mcp/http-server.mjs';
+import { benchmarkFor } from '../src/benchmark.mjs';
+
+test('benchmark tools record actual MCP calls across stateless requests without operating the phone on start or finish', async t => {
+  const { mkdtempSync, rmSync, readdirSync } = await import('node:fs');
+  const { tmpdir } = await import('node:os');
+  const { join } = await import('node:path');
+  const directory = mkdtempSync(join(tmpdir(), 'android-benchmark-mcp-test-'));
+  t.after(() => rmSync(directory, { recursive: true, force: true }));
+  const f = await fixture(t);
+  benchmarkFor(f.device).directory = directory;
+  const armed = await f.call('phone_benchmark_start', { experiment: 'test-only', task_label: 'Synthetic settings check', iteration: 1, root_cause: 'Synthetic test cause', change: 'Synthetic test correction' });
+  assert.equal(armed.structuredContent.data.state, 'armed');
+  assert.equal(f.device.getStatus().session_active, false);
+  assert.equal(readdirSync(directory).filter(n => n.endsWith('.json')).length, 1);
+  await f.pair();
+  const screen = await f.read();
+  const action = f.call('phone_action_and_observe', { action: 'tap', snapshot_id: screen.snapshot_id, target_id: 1, settle_ms: 0 });
+  const tap = await f.next();
+  await f.result(tap.id, { accepted: true });
+  const read = await f.next();
+  await f.result(read.id, { snapshot: 'benchmark-after', clicksAvailable: true, elements: [] });
+  assert.equal((await action).structuredContent.ok, true);
+  const premature = await f.call('phone_benchmark_finish', { outcome: 'success', verified: true });
+  assert.equal(premature.structuredContent.error.code, 'BUSY');
+  await f.call('phone_stop_session');
+  const status = (await f.call('phone_benchmark_status')).structuredContent.data;
+  assert.equal(status.calls.length, 3);
+  assert.equal(status.summary.steps, 1);
+  assert.equal(status.summary.screen_reads, 2);
+  assert.equal(status.summary.ai_inference_ms, null);
+  assert.equal(Object.hasOwn(status.summary.timing, 'screenshots'), false);
+  const finished = (await f.call('phone_benchmark_finish', { outcome: 'success', verified: true, waste_reviewed: true, notes: 'Synthetic fixture verified' })).structuredContent.data;
+  assert.equal(finished.label, 'clean_success');
+  assert.equal(finished.iteration, 1);
+  assert.equal(finished.finalized, true);
+  assert.equal(f.device.getStatus().session_active, false);
+});
 
 async function fixture(t, commandTimeoutMs = 1000) {
   const deviceToken = 'device-token-'.repeat(4);
@@ -49,10 +86,26 @@ async function fixture(t, commandTimeoutMs = 1000) {
       { id: 10, path: '0/1', visible: true, enabled: true, scrollable: true, scrollDirections: ['down'] },
       { id: 12, path: '0/2', visible: true, enabled: true, editable: true, supportsSetText: true, hint: 'Search Settings' }
     ] });
-    return (await response).structuredContent.data;
+    const reply = await response;
+    assert.equal(reply.content[0].text, 'OK. Full result in structuredContent.');
+    assert.ok(JSON.stringify(reply.content).length < JSON.stringify(reply.structuredContent).length / 2);
+    assert.equal(reply.structuredContent.data.app_navigation_guide, undefined);
+    assert.equal(reply.structuredContent.data.note, undefined);
+    return reply.structuredContent.data;
   };
   return { device, client, call, read, pair, next, result, url, mcpToken, deviceToken, send };
 }
+
+test('message workflow is exposed over MCP and refuses an existing task', async t => {
+  const f = await fixture(t);
+  const tools = await f.client.listTools();
+  assert.ok(tools.tools.some(tool => tool.name === 'phone_send_message'));
+  // An existing task must not be taken over or stopped by the workflow.
+  await f.pair();
+  const rejected = await f.call('phone_send_message', { recipient: 'Tote', text: 'hello', task_text: 'Text Tote hello' });
+  assert.equal(rejected.structuredContent.error.code, 'BUSY');
+  assert.equal(f.device.getStatus().session_active, true);
+});
 
 test('combined action returns a usable next snapshot and never repeats a successful action after read failure', async t => {
   const f = await fixture(t);
@@ -74,10 +127,42 @@ test('combined action returns a usable next snapshot and never repeats a success
   await f.result(save.id, { accepted: true });
   const failedRead = await f.next();
   await f.result(failedRead.id, { error: 'No accessible window.' });
-  const partial = (await next).structuredContent;
+  const partialReply = await next;
+  assert.match(partialReply.content[0].text, /DEVICE_REJECTED.*Action acknowledged; read again, do not repeat/);
+  const partial = partialReply.structuredContent;
   assert.equal(partial.ok, true);
   assert.equal(partial.data.action_result.accepted, true);
   assert.equal(partial.data.observation_error.code, 'DEVICE_REJECTED');
+  assert.equal(f.device.getStatus().command_pending, false);
+});
+
+test('post-send delivery checking verifies draft, sends once and returns early with delivery evidence', async t => {
+  const f = await fixture(t);
+  await f.pair();
+  const reading = f.call('phone_read_screen');
+  const read = await f.next();
+  await f.result(read.id, { snapshot: 'draft', package: 'com.google.android.apps.messaging', clicksAvailable: true, elements: [
+    { id: 1, visible: true, enabled: true, editable: true, supportsSetText: true, text: 'Hi how are ya' },
+    { id: 2, visible: true, enabled: true, clickable: true, description: 'Send encrypted message' }
+  ] });
+  await reading;
+  const rejected = await f.call('phone_action_and_observe', { action: 'tap', snapshot_id: 'draft', target_id: 2, delivery_text: 'Wrong text' });
+  assert.equal(rejected.structuredContent.error.code, 'INVALID_ARGUMENT');
+  assert.equal(f.device.getStatus().command_pending, false);
+  const sending = f.call('phone_action_and_observe', { action: 'tap', snapshot_id: 'draft', target_id: 2, delivery_text: 'Hi how are ya' });
+  const tap = await f.next();
+  assert.equal(tap.action, 'tap_element');
+  await f.result(tap.id, { accepted: true });
+  const verify = await f.next();
+  assert.equal(verify.action, 'read');
+  await f.result(verify.id, { snapshot: 'delivered', package: 'com.google.android.apps.messaging', clicksAvailable: true, elements: [
+    { id: 5, visible: true, description: 'You said Hi how are ya 1:02 AM ., Delivered. End-to-end encrypted message' }
+  ] });
+  const data = (await sending).structuredContent.data;
+  assert.equal(data.delivery.status, 'delivered');
+  assert.equal(data.delivery.reads, 1);
+  assert.equal(data.timings.settle_ms, 0);
+  assert.equal(data.observation.snapshot_id, 'delivered');
   assert.equal(f.device.getStatus().command_pending, false);
 });
 
@@ -102,11 +187,12 @@ test('keyboard submit requires advertised support, translates target IDs, and co
   assert.equal((await f.call('phone_submit_text', { snapshot_id: screen.snapshot_id, target_id: 1 })).structuredContent.error.code, 'SNAPSHOT_MISSING_OR_CONSUMED');
 });
 
-test('MCP HTTP handshake lists twelve annotated tools; status exposes no credentials', async t => {
+test('MCP HTTP handshake lists phone and benchmark tools; status exposes no credentials', async t => {
   const f = await fixture(t);
   const { tools } = await f.client.listTools();
   assert.deepEqual(tools.map(tool => tool.name).sort(), [
-    'phone_submit_text', 'phone_action_and_observe', 'phone_status', 'phone_start_session', 'phone_launch_app', 'phone_read_screen', 'phone_tap', 'phone_type', 'phone_scroll', 'phone_swipe', 'phone_back', 'phone_stop_session'
+    'phone_send_message', 'phone_submit_text', 'phone_action_and_observe', 'phone_status', 'phone_start_session', 'phone_launch_app', 'phone_read_screen', 'phone_tap', 'phone_type', 'phone_scroll', 'phone_swipe', 'phone_back', 'phone_stop_session',
+    'phone_benchmark_start', 'phone_benchmark_status', 'phone_benchmark_mark_wasted', 'phone_benchmark_finish', 'phone_benchmark_report'
   ].sort());
   for (const tool of tools) {
     assert.ok(tool.description);
@@ -121,13 +207,14 @@ test('MCP HTTP handshake lists twelve annotated tools; status exposes no credent
   const noSession = await f.call('phone_read_screen');
   assert.equal(noSession.isError, true);
   assert.equal(noSession.structuredContent.error.code, 'SESSION_REQUIRED');
+  assert.match(noSession.content[0].text, /^SESSION_REQUIRED:/);
 });
 
 test('MCP app launch requires a session, restricts package names, and waits for Android result', async t => {
   const f = await fixture(t);
   assert.equal((await f.call('phone_launch_app', { package_name: 'com.google.android.youtube' })).structuredContent.error.code, 'SESSION_REQUIRED');
   await f.pair();
-  const invalid = await f.call('phone_launch_app', { package_name: 'com.google.android.apps.authenticator2' });
+  const invalid = await f.call('phone_launch_app', { package_name: 'com.samsung.android.app.notes' });
   assert.equal(invalid.isError, true);
   const launched = f.call('phone_launch_app', { package_name: 'com.google.android.youtube' });
   const command = await f.next();
@@ -162,17 +249,17 @@ test('MCP screen read exports semantic evidence without changing native target m
   assert.equal((await tap).structuredContent.data.accepted, true);
 });
 
-test('MCP launches installed app packages while rejecting Notes and authenticator packages', async t => {
+test('MCP launches installed app packages while rejecting Notes and the companion package', async t => {
   const f = await fixture(t);
   await f.pair();
-  for (const package_name of ['com.instagram.android', 'com.linkedin.android', 'com.google.android.apps.messaging', 'com.samsung.android.messaging', 'com.android.chrome', 'com.google.android.gm']) {
+  for (const package_name of ['com.instagram.android', 'com.linkedin.android', 'com.google.android.apps.messaging', 'com.samsung.android.messaging', 'com.android.chrome', 'com.google.android.gm', 'com.google.android.apps.authenticator2', 'com.azure.authenticator']) {
     const pending = f.call('phone_launch_app', { package_name });
     const command = await f.next();
     assert.equal(command.package, package_name);
     await f.result(command.id, { accepted: true });
     assert.equal((await pending).structuredContent.data.accepted, true);
   }
-  for (const package_name of ['com.samsung.android.app.notes', 'com.google.android.apps.authenticator2', 'com.azure.authenticator', 'com.androidphonecontrol', 'bad/package']) {
+  for (const package_name of ['com.samsung.android.app.notes', 'com.androidphonecontrol', 'bad/package']) {
     assert.equal((await f.call('phone_launch_app', { package_name })).isError, true);
     assert.equal((await f.call('phone_action_and_observe', { action: 'launch', package_name })).isError, true);
     assert.match(f.device.requestLaunchApp(package_name), /blocked|Invalid/);
@@ -244,7 +331,7 @@ test('MCP read returns sequential targets and explicit snapshots; taps deliver n
   assert.deepEqual(screen.actions.map(item => item.target_id), [1, 2, 3]);
   assert.equal(screen.actions[0].label, 'Display');
   assert.equal(screen.actions[2].can_type, true);
-  assert.ok(screen.visible_text.includes('Display'));
+  assert.equal(screen.visible_text.includes('Display'), false); // Already present in the returned action label.
   const stale = await f.call('phone_tap', { snapshot_id: 'old-screen', target_id: 1 });
   assert.equal(stale.structuredContent.error.code, 'SNAPSHOT_REPLACED');
   const pending = f.call('phone_tap', { snapshot_id: screen.snapshot_id, target_id: 1 });

@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Android Agent</string>
-    <string name="service_description">Companion for your self-hosted phone-control server. Turn Agentic control on to allow ChatGPT to read, tap, type, scroll and swipe in apps except Notes, Google Authenticator and Microsoft Authenticator. This includes personal content and message controls. Task sessions end after five minutes or one minute idle; availability stays on between tasks. Turn control off or use notification Stop to disable access. No automatic restart after reboot.</string>
+    <string name="service_description">Companion for your self-hosted phone-control server. Turn Agentic control on to allow ChatGPT to read, tap, type, scroll and swipe in apps except Notes. This includes personal content and message controls. Task sessions end after five minutes or one minute idle; availability stays on between tasks. Turn control off or use notification Stop to disable access. No automatic restart after reboot.</string>
 </resources>

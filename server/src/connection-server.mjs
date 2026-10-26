@@ -128,7 +128,7 @@ export function createConnectionServer(token, onResult = () => {}, now = Date.no
   server.requestRead = () => queue('read');
   server.requestTap = () => queue('tap_test');
   server.requestLaunchApp = packageName => {
-    if (!canLaunchPackage(packageName)) return 'Invalid or blocked app package. Notes and authenticator apps are excluded.';
+    if (!canLaunchPackage(packageName)) return 'Invalid or blocked app package. Notes are excluded.';
     return queue('launch_app', { package: packageName });
   };
   const recentSnapshot = () => {
@@ -222,7 +222,7 @@ export function createConnectionServer(token, onResult = () => {}, now = Date.no
     // must never create a new session using IDs from an expired session.
     if (!session && ['read', 'launch'].includes(action) && availability) {
       if (action === 'launch' && !canLaunchPackage(args.package_name)) {
-        throw new DeviceCommandError('COMMAND_REJECTED', 'Invalid or blocked app package. Notes and authenticator apps are excluded.');
+        throw new DeviceCommandError('COMMAND_REJECTED', 'Invalid or blocked app package. Notes are excluded.');
       }
       const starting = server.startSession({ signal, task_text: args.task_text });
       const lease = session;

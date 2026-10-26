@@ -1,6 +1,18 @@
 # Phone-control procedures
 
+## Conditional message workflow
+
+For an explicitly requested Google Messages recipient and exact message, prefer `phone_send_message` when exposed. Supply `recipient`, `text`, and faithful `task_text`. It requires an idle session, verifies fresh screens internally, opens an exact unique conversation (submitting Search if needed), verifies the recipient header and exact draft, attempts Send once, checks delivery for up to three seconds, and stops its own session. It stops on ambiguity, unsupported UI, existing drafts or errors. A composer type rejected with `TARGET_DISAPPEARED`, `TARGET_CHANGED` or `WINDOW_STATE_CHANGED` before Android performs text entry may recover once after a fresh read and repeated recipient, attachment and empty-draft verification. This does not apply to uncertain actions or Send. Inspect `status`, `send_attempted`, `send_acknowledged`, `delivery`, `session_stopped` and the trace; a completed tool call does not itself establish delivery. Never repeat the workflow automatically after an uncertain Send. Other apps continue to use individual controls. Benchmark traces retain internal action/read phases and workflow errors.
+
 ## Automatic session startup
+
+When the owner explicitly authorizes correcting an existing draft, read its
+exact text and verify the conversation first. Supply `expected_draft` to
+`phone_send_message` only for that authorized correction. The workflow rejects
+changed drafts and still verifies the exact replacement before Send. An
+existing partial draft alone does not prove a text-entry bug; inspect whether
+the failed trial actually attempted typing. Never use correction to repeat an
+uncertain Send.
 
 Begin an authorized phone task with app launch (prefer `phone_action_and_observe` with `action=launch`) or `phone_read_screen`. The server checks owner-enabled availability, establishes a bounded session if idle, and waits for the phone acknowledgement before dispatching. Do not call `phone_status` and `phone_start_session` as routine prerequisites; they remain available for diagnostics and explicit session management. Keep using a fresh snapshot for taps, typing, submit, scroll, swipe and Back. Never retry an uncertain action automatically. Stop the session when the task completes or fails, and never take over another task's session.
 
@@ -8,7 +20,7 @@ Supply `task_text` on the first launch/read/start call with the user's requested
 
 ## App access
 
-During owner-enabled Agentic control, apps are allowed except Notes, Google Authenticator, and Microsoft Authenticator. Blocked apps must not be launched, read, or controlled, including after navigating into them indirectly from another app. Do not work around an exclusion through another entry point. The Android Agent setup screen remains excluded to protect its connection credentials. An older installed companion may retain the previous limited app list until updated.
+During owner-enabled Agentic control, apps are allowed except Notes. Blocked apps must not be launched, read, or controlled, including after navigating into them indirectly from another app. Do not work around an exclusion through another entry point. The Android Agent setup screen remains excluded to protect its connection credentials. An older installed companion may retain the previous limited app list until updated.
 
 ## Conversations, sending messages, and playback
 
@@ -33,3 +45,4 @@ Entering text in Google Messages may only fill the search field; it does not pro
 Never infer “no conversations” or “no matches” from an unsubmitted search or a screen that only shows the query and filter chips. If no supported tool exposes the submit action, explain that the search could not be submitted and ask the user to press Search on the phone. Do not guess a control, fabricate results, or silently switch to Instagram.
 
 This procedure comes from the owner's correction during a Google Messages task. Keep the same guidance in the MCP server instructions and phone_type description so connector users receive it outside this workspace.
+

@@ -54,7 +54,7 @@ class RemoteAvailabilityService : Service() {
             supportedAppsAllowed = supportedApps
             running = true; instance = this
             lastHeartbeat = 0L
-            status = "Remote availability: connecting (${if (supportedApps) "All apps except Notes and authenticators" else "Settings only"}; ${if (actions) "actions allowed" else "read-only"})"
+            status = "Remote availability: connecting (${if (supportedApps) "All apps except Notes" else "Settings only"}; ${if (actions) "actions allowed" else "read-only"})"
             val current = ++epoch
             Thread { poll(endpoint, token, actions, supportedApps, current) }.start()
         } catch (error: Exception) {
@@ -109,7 +109,7 @@ class RemoteAvailabilityService : Service() {
                     val command = request("/v1/availability/$availability/next")
                     if (!running || epoch != current) break
                     lastHeartbeat = SystemClock.elapsedRealtime()
-                    status = "Remote availability: ready (${if (supportedApps) "All apps except Notes and authenticators" else "Settings only"}; ${if (actions) "actions allowed" else "read-only"})"
+                    status = "Remote availability: ready (${if (supportedApps) "All apps except Notes" else "Settings only"}; ${if (actions) "actions allowed" else "read-only"})"
                     if (command.optString("action") == "start_session") {
                         val session = command.getString("session")
                         val seconds = command.getLong("seconds")

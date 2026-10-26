@@ -4,13 +4,12 @@ package com.androidphonecontrol
 class SessionPolicy(private val elapsed: () -> Long) {
     companion object {
         val BLOCKED_APPS = setOf("com.androidphonecontrol", "com.samsung.android.app.notes",
-            "com.samsung.android.snote", "com.miui.notes", "com.coloros.note", "com.oplus.note", "com.oneplus.note",
-            "com.google.android.apps.authenticator2", "com.azure.authenticator")
+            "com.samsung.android.snote", "com.miui.notes", "com.coloros.note", "com.oplus.note", "com.oneplus.note")
         private val PACKAGE_NAME = Regex("[A-Za-z][A-Za-z0-9_]*(\\.[A-Za-z][A-Za-z0-9_]*)+")
         fun isBlockedApp(packageName: String?, label: String? = null): Boolean {
             if (packageName == null || packageName.length > 255 || !PACKAGE_NAME.matches(packageName)) return true
             val normalized = label?.trim()?.lowercase(java.util.Locale.ROOT)
-            return packageName in BLOCKED_APPS || normalized in setOf("notes", "samsung notes", "google authenticator", "microsoft authenticator", "authenticator")
+            return packageName in BLOCKED_APPS || normalized in setOf("notes", "samsung notes")
         }
     }
     @Volatile private var deadline = 0L
@@ -31,7 +30,7 @@ class SessionPolicy(private val elapsed: () -> Long) {
 
     fun checkAccess(packageName: String?, mutation: Boolean = false, appLabel: String? = null) {
         check(active) { "No active local session. Enable one in the app." }
-        check(!isBlockedApp(packageName, appLabel)) { "App blocked. Notes and authenticator apps are excluded from phone control." }
+        check(!isBlockedApp(packageName, appLabel)) { "App blocked. Notes are excluded from phone control." }
         check(packageName == "com.android.settings" || supportedApps) { "App blocked. Enable Agentic control locally for access beyond Settings." }
         check(!mutation || allowActions) { "Read-only session. Enable actions locally before a new session or availability period." }
     }

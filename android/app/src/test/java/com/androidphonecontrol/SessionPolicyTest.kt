@@ -55,7 +55,7 @@ class SessionPolicyTest {
             rejects { policy.checkAccess(app) }
             rejects { policy.checkAccess(app, true) }
         }
-        for (label in listOf("Notes", "Samsung Notes", "Google Authenticator", "Microsoft Authenticator")) {
+        for (label in listOf("Notes", "Samsung Notes")) {
             rejects { policy.checkAccess("com.vendor.custom", appLabel = label) }
             rejects { policy.checkAccess("com.vendor.custom", true, label) }
         }
@@ -63,6 +63,8 @@ class SessionPolicyTest {
         rejects { policy.checkAccess("bad/package") }
         policy.checkAccess("com.android.chrome", true)
         policy.checkAccess("com.google.android.gm", true)
+        policy.checkAccess("com.google.android.apps.authenticator2", true, "Google Authenticator")
+        policy.checkAccess("com.azure.authenticator", true, "Microsoft Authenticator")
         policy.stop()
         rejects { policy.checkAccess("com.android.chrome", true) }
     }

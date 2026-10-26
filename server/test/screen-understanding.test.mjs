@@ -2,6 +2,31 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { describeActions, appNavigationGuide, compactObservation } from '../src/screen-understanding.mjs';
 
+test('compact text deduplication preserves draft, recipient, body and delivery evidence', () => {
+  const screen = { snapshot: 's', clicksAvailable: true, elements: [
+    { id: 1, visible: true, enabled: true, clickable: true, text: 'Tote' },
+    { id: 2, visible: true, enabled: true, editable: true, supportsSetText: true, text: 'Hi how are ya' },
+    { id: 3, visible: true, enabled: true, text: 'Delivered' },
+    { id: 4, visible: true, enabled: true, clickable: true, text: 'x'.repeat(200) }
+  ] };
+  const compact = compactObservation(screen);
+  const detailed = compactObservation(screen, { detailed: true });
+  assert.deepEqual(compact.actions.map(a => a.target_id), detailed.actions.map(a => a.target_id));
+  assert.equal(compact.actions[1].label, 'Hi how are ya');
+  assert.deepEqual(compact.visible_text, ['Delivered', 'x'.repeat(200)]);
+  assert.equal(compact.omitted_text, 0);
+  assert.ok(detailed.visible_text.includes('Tote'));
+  assert.ok(detailed.visible_text.includes('Hi how are ya'));
+  assert.ok(JSON.stringify(compact).length < JSON.stringify(detailed).length);
+  // With unavailable actions, labels cannot serve as the text evidence.
+  assert.ok(compactObservation({ ...screen, clicksAvailable: false }).visible_text.includes('Tote'));
+  // Labels outside the returned action limit must not hide visible text.
+  const crowded = { ...screen, elements: Array.from({ length: 61 }, (_, i) => ({
+    id: i, visible: true, enabled: true, clickable: true, text: `Item ${i}`
+  })) };
+  assert.deepEqual(compactObservation(crowded).visible_text, ['Item 60']);
+});
+
 test('compact viewport excludes adjacent pages, prioritizes navigation, and retains original target IDs', () => {
   const screen = { snapshot: 's', clicksAvailable: true, windowBounds: '[0,0][100,200]', elements: [
     { id: 10, visible: true, enabled: true, clickable: true, text: 'Post', bounds: '[0,20][90,100]' },

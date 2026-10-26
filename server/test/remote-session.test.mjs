@@ -49,7 +49,7 @@ test('First launch or read automatically starts a session and waits for acknowle
 
 test('Automatic start preserves exclusions, snapshot requirements, cancellation, and start timeout', async t => {
   const f = await fixture(t, 50), availability = await f.enable();
-  await assert.rejects(f.server.executeCommand('launch', { package_name: 'com.azure.authenticator' }), error => error.code === 'COMMAND_REJECTED');
+  await assert.rejects(f.server.executeCommand('launch', { package_name: 'com.samsung.android.app.notes' }), error => error.code === 'COMMAND_REJECTED');
   await assert.rejects(f.server.executeCommand('tap', { snapshot_id: 'old', target_id: 1 }), error => error.code === 'SESSION_REQUIRED');
   assert.equal(f.server.getStatus().session_active, false);
   const controller = new AbortController();

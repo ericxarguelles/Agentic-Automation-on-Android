@@ -77,7 +77,7 @@ object ReadSession {
                 }
                 if (generation == current) {
                     phase = TaskPhase.RUNNING
-                    status = "Task session: active (up to 5 minutes). ${if (allowSupportedApps) "All apps except Notes and authenticators" else "Settings only"}. " + if (allowActions) "Actions enabled." else "Read-only."
+                    status = "Task session: active (up to 5 minutes). ${if (allowSupportedApps) "All apps except Notes" else "Settings only"}. " + if (allowActions) "Actions enabled." else "Read-only."
                 }
                 while (generation == current && SystemClock.elapsedRealtime() < deadline && PhoneAccessibilityService.isConnected) {
                     SessionNotice.checkVisible()
@@ -115,8 +115,11 @@ object ReadSession {
                         if (generation == current && SystemClock.elapsedRealtime() < deadline) {
                             request("/v1/session/$session/result", "POST", JSONObject().put("id", command.getString("id")).put("result", result))
                         }
+                    } else {
+                        // Completed commands fetch their successor immediately. Only idle
+                        // responses back off, avoiding a busy loop while awaiting work.
+                        Thread.sleep(100)
                     }
-                    Thread.sleep(750)
                 }
                 if (generation == current) { phase = TaskPhase.ENDED; status = "Task session: ended"; TaskJournal.finish("Session ended") }
             } catch (_: SessionEndedException) {
