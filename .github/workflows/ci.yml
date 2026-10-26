@@ -1,0 +1,45 @@
+name: Checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  server:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.11.0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: pnpm
+          cache-dependency-path: server/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+        working-directory: server
+      - run: pnpm test
+        working-directory: server
+      - run: node --test evals/report.test.mjs
+      - run: node --test scripts/publication.test.mjs
+  android:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install build SDK
+        shell: pwsh
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Test and build debug app
+        working-directory: android
+        shell: pwsh
+        run: ./gradlew.bat --no-daemon testDebugUnitTest assembleDebug
+
+# Prepared locally. A remote CI pass is not established until this workflow
+# runs in the eventual GitHub repository. Benchmark API keys are not required.
