@@ -34,7 +34,7 @@ If installation reports an error, resolve it before continuing. Repeat this step
 
 ## 4. Start your server and retrieve your credentials
 
-Follow [Windows server setup](windows-startup.md) to start your server and retrieve **your own pairing token and owner approval key**.
+Follow [Windows server setup](https://github.com/ericxarguelles/Agentic-Automation-on-Android/blob/main/docs/windows-startup.md) to start your server and retrieve **your own pairing token and owner approval key**.
 
 Keep your Windows computer awake and the server running while using Android Agent.
 
