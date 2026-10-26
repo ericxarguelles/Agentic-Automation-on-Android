@@ -49,6 +49,9 @@ flowchart LR
     C --> D[Accessibility screen observations]
     C --> E[Validated UI actions]
 ```
+The per-step loop — accessible screen text and UI controls in, one validated tool call out, a fresh observation back:
+
+![Android Agent tool-calling loop](docs/tool-calling-loop.png)
 
 **The assistant is the planner.** The server currently does not run its own model or durable background task worker. The first launch or screen read establishes a session automatically when owner-enabled availability is connected. Screen-bound actions use fresh, single-use snapshots. The phone acknowledges actions and returns observations for verification.
 
