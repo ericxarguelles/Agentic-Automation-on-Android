@@ -1,0 +1,44 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.jks
+*.keystore
+*.dpapi
+oauth-state.bin
+*.p12
+*.pfx
+*.apk
+*.aab
+*.hprof
+*.jfr
+*.har
+
+# Android and IDE build state
+.gradle/
+.kotlin/
+**/build/
+local.properties
+.idea/
+.vscode/
+.codex/
+.agents/
+*.iml
+
+# Server dependencies and generated files
+node_modules/
+coverage/
+dist/
+*.log
+
+# Local scratch files and deliverables
+work/
+outputs/
+evals/runs/
+evals/private/
+
+# OS metadata
+.DS_Store
+Thumbs.db
