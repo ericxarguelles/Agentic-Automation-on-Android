@@ -103,13 +103,16 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start-windows-stac
 
 ## Stop and restart
 
-- **Stop phone access:** tap Disconnect in Android Agent.
-- **Stop a foreground server:** press Ctrl+C in its PowerShell terminal.
-- **Restart:** run the same startup command from step 2.
+- **Disconnect phone:** tap **Disconnect** in Android Agent.
+- **Stop server:** press **Ctrl+C** in its PowerShell window. For a background server, find its process:
+  ```powershell
+  Get-CimInstance Win32_Process -Filter "Name = 'node.exe'" |
+    Select-Object ProcessId, CommandLine
+  ```
+  Find your project’s `server\scripts\start-windows-stack.mjs`, then run `Stop-Process -Id <ProcessId>` using its actual process ID.
+- **Restart:** run the startup command from step 2.
 
-Closing an unrelated terminal does not stop a background server.
-
-Saved credentials and unexpired OAuth grants persist across restarts. Active phone-control sessions do not. Keep the project folder in place.
+Disconnecting Tailscale or closing an unrelated terminal does not stop the server. Saved credentials and unexpired OAuth grants persist; active sessions do not.
 
 ## Keep private files private
 
