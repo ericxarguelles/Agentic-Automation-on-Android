@@ -102,6 +102,12 @@ The per-step loop — accessible screen text and UI controls in, one validated t
 <p align="center">
   <img src="docs/media/tool-calling-loop.png">
 
+Nine instrumented trials of the same task, with fixes between runs: **81.1 seconds → 6.2 seconds, 4 actions — 92.4% less measured time and 50% fewer actions.** Final delivery was verified separately after timing ended.
+
+## The Results
+
+[Nine-trial benchmark: 81.1s to 6.2s](docs/optimization.svg) ([image](docs/optimization.svg))
+
 ## Capabilities and limits
 
 | Area | Current implementation |
