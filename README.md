@@ -42,6 +42,8 @@ These illustrate supported workflows, not a guarantee that every app exposes usa
 
 ## How it works
 
+**The assistant is the planner.** The server currently does not run its own model or durable background task worker. The first launch or screen read establishes a session automatically when owner-enabled availability is connected. Screen-bound actions use fresh, single-use snapshots. The phone acknowledges actions and returns observations for verification.
+
 ```mermaid
 flowchart LR
     A[Chat assistant: decides next action] -->|HTTPS + OAuth / MCP| B[Self-hosted Node.js server]
@@ -53,8 +55,6 @@ The per-step loop — accessible screen text and UI controls in, one validated t
 
 <p align="center">
   <img src="docs/media/tool-calling-loop.png">
-
-**The assistant is the planner.** The server currently does not run its own model or durable background task worker. The first launch or screen read establishes a session automatically when owner-enabled availability is connected. Screen-bound actions use fresh, single-use snapshots. The phone acknowledges actions and returns observations for verification.
 
 ## Capabilities and limits
 
