@@ -12,9 +12,10 @@ No Android Studio or app-building tools are needed when using this APK. If updat
 
 Install:
 
-- [Node.js — official download](https://nodejs.org/en/download)
+- [Node.js 22 or later — official download](https://nodejs.org/en/download)
 - [pnpm — official installation instructions](https://pnpm.io/installation)
 - [Tailscale — official download](https://tailscale.com/download)
+  
 Install Tailscale on your phone too, and sign both devices into your own Tailscale account.
 
 Download and extract this repository onto your Windows computer. Keep this folder in place—it contains your server.
