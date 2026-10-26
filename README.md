@@ -32,10 +32,11 @@ These are emulator UI previews using a synthetic task. They are not benchmark re
 ## What you can ask
 
 - “Open Instagram and tell me my follower count.”
-- “Open my conversation with Alex and read the latest three messages, identifying the sender.”
+- “Open Messages with Alex and read the latest three messages.”
 - “Open Spotify and play a specific song.”
-- “Check a value first, then act only if my condition is met.”
+- “Open LinkedIn and go to my messages, read the most recent message.”
 - “Open Gmail and read out the latest email I've received.”
+- "Open Google and search for Penguins"
 
 These illustrate supported workflows, not a guarantee that every app exposes usable controls. A request to read an email or message opens the body and scrolls through its available text; inaccessible portions must be reported.
 
