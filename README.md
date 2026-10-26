@@ -18,9 +18,9 @@ From the ChatGPT assistant/app, whenever you need it. A self-hosted Android acce
 
 </div>
 
-Android Agent connects a chat assistant to an Android phone through a server you control. The assistant reads accessible screen text and controls, then launches apps, taps, types, scrolls, and verifies what happened. It is designed with hands-free use in mind; usability for blind and low-vision people. Excels in multi-step tasks compared to native Gemini assistant.
+Android Agent connects a chat assistant to an Android phone through a server you control. The assistant reads accessible screen text and controls, then launches apps, taps, types, scrolls, and verifies what happened. It is designed with hands-free use in mind; usability for blind and low-vision people.
 
-**Status: working prototype, Android app 0.8.0.** The real-phone tool path has been exercised during development. No AndroidWorld score or accessibility usability score has been measured yet.
+**Status: working prototype, Android app 0.8.0.** The real-phone tool path has been exercised during development. No AndroidWorld score or accessibility usability score has been measured yet. Excels in multi-step tasks compared to native Gemini assistant.
 
 <p align="center">
   <img src="docs/media/task-thinking.png" alt="Emulator preview: a live phone task with request text, thinking progress, elapsed seconds and Stop task" width="280">
@@ -33,7 +33,7 @@ These are emulator UI previews using a synthetic task. They are not benchmark re
 
 - “Open Instagram and tell me my follower count.”
 - “Open Messages with Alex and read the latest three messages.”
-- “Open Spotify and play a specific song.”
+- “Open SoundCloud and play tuition by Don Toliver.”
 - “Open LinkedIn and go to my messages, read the most recent message.”
 - “Open Gmail and read out the latest email I've received.”
 - "Open Google and search for Penguins"
