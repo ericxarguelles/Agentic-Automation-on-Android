@@ -1,0 +1,484 @@
+{
+  "status": "passed-scoped-scan",
+  "files": 119,
+  "private_values_checked": 6,
+  "scope": "Allowlisted source files only; not a vulnerability audit, Git-history scan, or proof of absence of secrets.",
+  "fingerprints": [
+    {
+      "file": ".github/ISSUE_TEMPLATE/bug_report.md",
+      "sha256": "fbb467c67b4de9ee3ab310f8c1d4ca1e19dc9f230756fc19cc7c5e412cf6f374"
+    },
+    {
+      "file": ".github/pull_request_template.md",
+      "sha256": "785285f2c211af077d0f051dd721f970ac4c72a271abae688b2afb3136a94a4d"
+    },
+    {
+      "file": ".github/workflows/ci.yml",
+      "sha256": "25c4b01a9684fce4c73873ddaa96dcd67d7ddd58821741b91f6f2bbec27b587c"
+    },
+    {
+      "file": ".gitignore",
+      "sha256": "98dfc69ffc3554dd0eedeed2471cd7e17019d5fbfdde556325dcd1c53e63a352"
+    },
+    {
+      "file": "AGENTS.md",
+      "sha256": "40c13cf75662287d554f1ed56a42e7c084ea3852f8bc7bf9ccea74cc1175e2cf"
+    },
+    {
+      "file": "CHANGELOG.md",
+      "sha256": "952cf3eab011e2e4e3c517440e72de8da456bd6b7e45535f917128b367f0e4d5"
+    },
+    {
+      "file": "CONTRIBUTING.md",
+      "sha256": "b317b906051593f6bcda1ca38cb613ce188e187227907a15a342df35b2c1b5ef"
+    },
+    {
+      "file": "README.md",
+      "sha256": "e8c3b725cea20b0b702b541003b36be67466642950ddd9123e787846763f3f94"
+    },
+    {
+      "file": "SECURITY.md",
+      "sha256": "ce0cbfa70b45c13b466ed9e613a4c8e67657b745d8b0c0cfa88b99585bd7381d"
+    },
+    {
+      "file": "android/app/build.gradle.kts",
+      "sha256": "ec823a4cf04ef70e20318f135d70d5043ca022b4c8797e21227eb38fd430ff69"
+    },
+    {
+      "file": "android/app/src/androidTest/java/com/androidphonecontrol/TaskUiSmokeTest.kt",
+      "sha256": "34925cb124f547162167be507fc70ef48a32c2bfc1016b0d828b52047b36b302"
+    },
+    {
+      "file": "android/app/src/debug/AndroidManifest.xml",
+      "sha256": "3fd782b268f618ef0c725797e88fb9ebccd30fd33685f4f263f535cdad53b520"
+    },
+    {
+      "file": "android/app/src/debug/res/xml/debug_network_security.xml",
+      "sha256": "7af8003b1ee24012882105c3f39e106310617ad00539f459ea751fea606ce87b"
+    },
+    {
+      "file": "android/app/src/main/AndroidManifest.xml",
+      "sha256": "4b7efd391d69871355daef879c510777d6f1b2346631a0e30b235a32c5a67087"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/AgentPreferences.kt",
+      "sha256": "547af5b29c8f1dee774625d8fef2742346fbe6e4dfccaf7cb48cec4c14a484de"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/AgentVisuals.kt",
+      "sha256": "ff178091af7078efebb604aaae8ed232990f193e1d56be04410f92d36a864595"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/AvailabilityPresentation.kt",
+      "sha256": "ee24f0fd47e2558e961225e738f878acf489ff2b2c4b29ed5bc8ce1aa67dc96b"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/AvailabilityStartupGate.kt",
+      "sha256": "0c17354baf67e40ed405dba9a63e21b164c6112e6ba6a5d646c61881dbb9d8a1"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/MainActivity.kt",
+      "sha256": "c35cb445903c4740592594ddaa81fbc05cb037c879101c225cc1114d4d07d1d6"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/PairingCipher.kt",
+      "sha256": "34dc537dcc9e8dcfc5f99e7d537fc3f00d4ea9ec9777b9f7b8d509628771a5bc"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/PairingStore.kt",
+      "sha256": "aa4be328865b629fcf0dd03ce5876cd6e091c9284700ccea4298f65c2beaa54b"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/PhoneAccessibilityService.kt",
+      "sha256": "4ce416933e83e795f870387589f83deb19f177c470583cda812fc91cd3cb611b"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/ReadSession.kt",
+      "sha256": "37369be2d0ad8ea599df5a063e3257983ebb43a2a21ffb5b0fd719f09d2ccc8f"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/RemoteAvailabilityService.kt",
+      "sha256": "fcd4c5b00562b1490767e3da01c24ebf63b4c4b556f1e70cbfce455cd9215ab1"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/ServerMark.kt",
+      "sha256": "32ae68e29d509d284d991a262042553f0dd6fc2e344cbc6fc733e13913b93935"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/SessionNotice.kt",
+      "sha256": "876ad3dad5f0ee1556cf8f332f802a8b2f24213c4d26cbc27ecf43250ec66cdc"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/SessionPolicy.kt",
+      "sha256": "86ffd1069994b77a5a44a99965bb9f1e3f8be71e9406125e8d265fefb3308996"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/TapTestActivity.kt",
+      "sha256": "7f59da23faab707029e018508615fc07a759243dc2d8f0731795ecd8f3e0b8d9"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/TaskJournal.kt",
+      "sha256": "70f98ee75d7af7ad9c29dc906048f5387ddd73d3daa2393ab63c9008944b8863"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/TaskPresentation.kt",
+      "sha256": "ccd625df952e5c7c544fd4129be47b6e90f73eb8b0d4bbac3da4e6a48fa5ae2d"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/VoiceInput.kt",
+      "sha256": "04a3ce3bd04ce76139f9c122ec29203f2d7d2782135df19f14a5d65db2ed79d9"
+    },
+    {
+      "file": "android/app/src/main/java/com/androidphonecontrol/VoiceTaskPrompt.kt",
+      "sha256": "539d47dfc5d1b4466500fe804509abfcfa753da7cf3b17a8758b13ec9bfdb301"
+    },
+    {
+      "file": "android/app/src/main/res/values/ids.xml",
+      "sha256": "a913c4fc24bc7b385859572bc4b9eb0bbe5921d1c9d28696ca5454ad383a79ee"
+    },
+    {
+      "file": "android/app/src/main/res/values/strings.xml",
+      "sha256": "ea143d43b21b9357ee9527e94f911b82cd4ec8f38f415cef464790411bef0a63"
+    },
+    {
+      "file": "android/app/src/main/res/values/styles.xml",
+      "sha256": "81b4204201bdb81cd30faaa0af6a6d0a08510bdb7c4f24bcaff158effe2d565e"
+    },
+    {
+      "file": "android/app/src/main/res/xml/accessibility_service.xml",
+      "sha256": "50bb36dcd9e76a0fa6374a592002811eed35561606a0a0d6b7b3f9cd6cac5b8e"
+    },
+    {
+      "file": "android/app/src/test/java/com/androidphonecontrol/AvailabilityPresentationTest.kt",
+      "sha256": "303e95c4c42daaf15b1357153815a159339aad252ff88c238c40c5331735c505"
+    },
+    {
+      "file": "android/app/src/test/java/com/androidphonecontrol/AvailabilityStartupGateTest.kt",
+      "sha256": "4d9b83622a2cd53cfd4f044f903c249fb340951d5db0c23736c48b1965fc5783"
+    },
+    {
+      "file": "android/app/src/test/java/com/androidphonecontrol/PairingCipherTest.kt",
+      "sha256": "e72bb88dbcbf26f936eb214f2f8daf10795350ce48a72f60a51bd664e996ce0b"
+    },
+    {
+      "file": "android/app/src/test/java/com/androidphonecontrol/SessionPolicyTest.kt",
+      "sha256": "6bddccf34ee6bdf24cced97f9eebef371793051552c9c0a94f2c0eb68e18fe5a"
+    },
+    {
+      "file": "android/app/src/test/java/com/androidphonecontrol/TaskPresentationTest.kt",
+      "sha256": "d7b4248f7f5885424dae9c8c2be3be296cfefd8f6eea739fe7403a0b297a76b6"
+    },
+    {
+      "file": "android/app/src/test/java/com/androidphonecontrol/VoiceTaskPromptTest.kt",
+      "sha256": "5ff5ed255c7aa67a6466fa186545c9fce179ddc16ba3302ea9ccd3653ce218bc"
+    },
+    {
+      "file": "android/build.gradle.kts",
+      "sha256": "329036499b58c82966a8dabcbc172c4e2804bbb96b775fb656770e6555da3084"
+    },
+    {
+      "file": "android/gradle.properties",
+      "sha256": "ef133a3823e54117379f34ac35089091f5ca64b0d7be7600fe465dadfa994142"
+    },
+    {
+      "file": "android/gradle/wrapper/gradle-wrapper.jar",
+      "sha256": "497c8c2a7e5031f6aa847f88104aa80a93532ec32ee17bdb8d1d2f67a194a9c7"
+    },
+    {
+      "file": "android/gradle/wrapper/gradle-wrapper.properties",
+      "sha256": "e74d4f107d2feab989b9a041a02e2d2b85567ff48415c9c7add5ecc19abd19f9"
+    },
+    {
+      "file": "android/gradlew",
+      "sha256": "a5a5c199ba02189ae8c46a334223371a20599d9c298ef65e7540ede4a3f72d59"
+    },
+    {
+      "file": "android/gradlew.bat",
+      "sha256": "d539676c48b596afda64c963ec8f7ee56c7b3fe7e3b81d1dbe2d1a1e3dd9e9f8"
+    },
+    {
+      "file": "android/settings.gradle.kts",
+      "sha256": "c964cc0749e2bae4b260b7b88d9dc5c4b9b968d7341e9f23964c8a1a46d76f3e"
+    },
+    {
+      "file": "deploy/tunnel-client.yaml",
+      "sha256": "264b8a091a26aabb613054171ed33f2f92a6ac6a65abbd314c4d5fc7ba95e63f"
+    },
+    {
+      "file": "docs/README.md",
+      "sha256": "8e98965d172a7ba00c6ef074fc77d21ac5ed950a347a657cd44bf5723929656d"
+    },
+    {
+      "file": "docs/agentic-control.md",
+      "sha256": "b6ad880fc2eb0f82318a0ef587d0b9368b07dc46ae41774003ba5dc929322a84"
+    },
+    {
+      "file": "docs/android-agent-ui.md",
+      "sha256": "150086bad05eb59d76f1a149df4a2c04e26da64eaacb13afe3e98300c1f72e62"
+    },
+    {
+      "file": "docs/android-setup.md",
+      "sha256": "2eeb4a495ef185bbb5e1f6f6c1f528296625db00ede7b80b2110a9bbde328c37"
+    },
+    {
+      "file": "docs/app-access.md",
+      "sha256": "4bfb34bd0ff5534e1f8eb692bf72be6e4ef585e89d8d8653b889c7ee984c4c86"
+    },
+    {
+      "file": "docs/app-launch-test.md",
+      "sha256": "864477edc8cbf2cf78402ab6fea781edba434a8ed79d61791123fbf2c99a146c"
+    },
+    {
+      "file": "docs/architecture.md",
+      "sha256": "09f7b7e8d783a919e6f93607432dbf6d7cc6d965cc7eaf2964d8959bfab50d6c"
+    },
+    {
+      "file": "docs/automatic-sessions.md",
+      "sha256": "12f7cb53e91dac1bd637f721a8bc1493bf95046c5e0a947450eb8e2e887a5237"
+    },
+    {
+      "file": "docs/chatgpt-task-sessions.md",
+      "sha256": "830b03f95c2c3db2c29b0f9004074b48fabcf06718196ee42e6e36a547a7696c"
+    },
+    {
+      "file": "docs/compact-observations.md",
+      "sha256": "efa7a6fed9ddc0993d7f58ce51b34612cdced88eed767b8e5c1f7829a24c7a48"
+    },
+    {
+      "file": "docs/current-architecture.md",
+      "sha256": "c5ef639b9f860790e418a77734684f7e80ae85194ac3264e8ff4be5ac4160eb6"
+    },
+    {
+      "file": "docs/gemini-connection.md",
+      "sha256": "f6d8af27ef1538f73cbd4904951f2765767e517e9f58843dc596c5c6d3457010"
+    },
+    {
+      "file": "docs/getting-started.md",
+      "sha256": "0d6c227ae2a830e5a41fc1aa885a0093f16f5ee502eb75a4bda099a0640d6559"
+    },
+    {
+      "file": "docs/keyboard-submit.md",
+      "sha256": "dbf8852b1ec5fab2abb81a165660896a6ed8ee11ee74e0808f189d9b400c303a"
+    },
+    {
+      "file": "docs/local-connection.md",
+      "sha256": "dfaac406d4067525d4ee3c84bc9e69669bd2273eec6131ba05e04d5a36b327af"
+    },
+    {
+      "file": "docs/mcp-setup.md",
+      "sha256": "cbe924e12cad6f7a569d5066f5787c4c63db979577f41194d5dcd66da18bbd66"
+    },
+    {
+      "file": "docs/media/task-history.png",
+      "sha256": "66be044a6ffc32831d8552083c116bbe1bda76903e40d07bb1af21471e6e5e5b"
+    },
+    {
+      "file": "docs/media/task-thinking.png",
+      "sha256": "24544e2bf51f9adbfca5f66d20a523e801a406b81a43f0ce816b2d32550152e2"
+    },
+    {
+      "file": "docs/mobile-connection.md",
+      "sha256": "33384b35157a2702a5616a296929b3f624722be2dac9660aa5bb0674f44aed0d"
+    },
+    {
+      "file": "docs/project-assessment.md",
+      "sha256": "70c71cea35982465e2b16afbea2f7e3e98b79d19eb3fddf4c7fc4f39b0c50e16"
+    },
+    {
+      "file": "docs/publication-audit.md",
+      "sha256": "2fb453ac06907631c34d9b8ae9b532aa66a9311ca4c3a395b1c154a6a9f47155"
+    },
+    {
+      "file": "docs/real-phone-test.md",
+      "sha256": "f06b19ccc2a3f64a10e8c920360840c1ab182c8d2cddccdf4c375d896ec13808"
+    },
+    {
+      "file": "docs/results.md",
+      "sha256": "09fcd4f64e933433503c3ae98c202969a57e383eb4b553c671f42d6d27fa43a6"
+    },
+    {
+      "file": "docs/roadmap.md",
+      "sha256": "c1cec0f6e99174c1cf6fb354fd63ebcdbb1b8e3b89825741769c385aea6c7181"
+    },
+    {
+      "file": "docs/tailscale-windows.md",
+      "sha256": "4d8730c356e2050f9bfdbce80ea0971368394aacd8e764ba38aebebf588634fd"
+    },
+    {
+      "file": "docs/task-history-ui.md",
+      "sha256": "8f75a3885597808076381d86d16357c43049620e2fcc86d5fcb771e85490f017"
+    },
+    {
+      "file": "docs/voice-and-navigation.md",
+      "sha256": "58f17474a181764ca9dfedd03c538ff8de1f2e8d4693efacacad8376178751f5"
+    },
+    {
+      "file": "docs/windows-startup.md",
+      "sha256": "c2bf2c382b7c5c2d35f9f731842d9a84e994368f97f01067e59fe3eb48816206"
+    },
+    {
+      "file": "evals/README.md",
+      "sha256": "4289fe6cec60a5fe80994ac2d69ba1ffabea1a0f1df04b2737e49acdccaec18b"
+    },
+    {
+      "file": "evals/report.mjs",
+      "sha256": "ef188144ad605ebb88453cfd4cdef32e1a2b4972323ae91e5fec660a8e747906"
+    },
+    {
+      "file": "evals/report.test.mjs",
+      "sha256": "b3c056df378ff4e08a6a9da1ae44faa053daf56bad11e41b708bf6249162bb1e"
+    },
+    {
+      "file": "evals/run.schema.json",
+      "sha256": "d0286d1ad8166a853cdf43fd52a8e4230b2feef59b0cbf682fb2f8015ba43916"
+    },
+    {
+      "file": "scripts/audit-publication.ps1",
+      "sha256": "dd5d7736be9d8b4fe612fb12cdbedfcec8dab273b70d370a99ea466ead13963c"
+    },
+    {
+      "file": "scripts/check-tunnel.ps1",
+      "sha256": "ed6a096537678d5b2cbda5b1cf709296b68aaaf52bbb0ecb4d40f11663fe8963"
+    },
+    {
+      "file": "scripts/install-tunnel-client.ps1",
+      "sha256": "ca61d725498714ccc53af8126edda648795c0236e0c0073c2a87925583b733cc"
+    },
+    {
+      "file": "scripts/install-windows-startup.ps1",
+      "sha256": "2f46a7708d5ada3f6ebab73685730dc96993fc056721f364596c9a73c9210bef"
+    },
+    {
+      "file": "scripts/node-runtime.ps1",
+      "sha256": "e38334e6fe88ae124597d8f07ab493a041859801f6fe7a27bd62cfa2d0d4c5d2"
+    },
+    {
+      "file": "scripts/prepare-publication.mjs",
+      "sha256": "af599db49e97a83524d2bc950f63c1ca7dbef381a318b5e996602542804c4b03"
+    },
+    {
+      "file": "scripts/publication.test.mjs",
+      "sha256": "0dd4f41458e14dd671f554370b3dc20dba99ae2440d5ccb5008855de87af6efa"
+    },
+    {
+      "file": "scripts/start-funnel-gateway.ps1",
+      "sha256": "d83a5a234125e125497972eb8e1369c82bf0494f1a58eab4990a2e056b49933e"
+    },
+    {
+      "file": "scripts/start-server.ps1",
+      "sha256": "fd4d3697b0cfcb47727b6fcd21bed2b8543fbf0257f0c520468da217d683cc0a"
+    },
+    {
+      "file": "scripts/start-tunnel.ps1",
+      "sha256": "f405e6ddab7ac128537220dc744b5bbf8f2573a2a0eb51d3063bb9dc038710e9"
+    },
+    {
+      "file": "scripts/start-windows-stack.ps1",
+      "sha256": "756761cffa013615c945f0ebfc87868d7965e9c06a7a3f3087255c0b723fbc9d"
+    },
+    {
+      "file": "scripts/test-mcp.ps1",
+      "sha256": "197c3f4ef3c153b18e75d48c4e08b96a821e0d24d74292554f20e25be2d53238"
+    },
+    {
+      "file": "server/package.json",
+      "sha256": "848ff7d0bf7e4e858a06b6854996e87b302d6b53073724668f76d57535501fb7"
+    },
+    {
+      "file": "server/pnpm-lock.yaml",
+      "sha256": "6c08c0f1be3bfe496f832cffe6adef4315e66ec1dce1a2c8a724de4176d61505"
+    },
+    {
+      "file": "server/scripts/check-mcp.mjs",
+      "sha256": "30b70c7d206fd72b27f9cdaf9d99013a4443f0311bf12455e319a9586bd8a70a"
+    },
+    {
+      "file": "server/scripts/start-oauth-gateway.mjs",
+      "sha256": "74dccd4c541ee97957a0c35bb8cefb9f5e038d11c83624040c617b0967f3c145"
+    },
+    {
+      "file": "server/scripts/start-windows-stack.mjs",
+      "sha256": "40105f99d707113c9e7b524a55a7b995e69703ce49c6366b137f375b33ca5bc8"
+    },
+    {
+      "file": "server/src/app-policy.mjs",
+      "sha256": "53fd4666f57bdfdac0a7ee6a2d39a0494d77d0a0a543d22a69a0ed1d99a2ca86"
+    },
+    {
+      "file": "server/src/connection-server.mjs",
+      "sha256": "5649697e60291c45283131e0812b1e18ed2053e428ac6d587bd757d4fbde5fe3"
+    },
+    {
+      "file": "server/src/index.mjs",
+      "sha256": "a571f352806f8d7bcad2ed7c0037dca882396a70532f07a260a81accfacabec9"
+    },
+    {
+      "file": "server/src/mcp/http-server.mjs",
+      "sha256": "3b132af44b69a592adc743854796056118af6a62251e6dc2c841724e596c6223"
+    },
+    {
+      "file": "server/src/mcp/oauth-gateway.mjs",
+      "sha256": "9b14cec3c08c1a82f4182b936ff2a8e5d78a46fc1c0da5d1413aa58b5dbf5e24"
+    },
+    {
+      "file": "server/src/mcp/tools.mjs",
+      "sha256": "c117b47bcf0da1fc19e6bd12134a14150a5e17272b4cb8cfdf5b5d28b1136f7b"
+    },
+    {
+      "file": "server/src/screen-understanding.mjs",
+      "sha256": "11acbd0dc4bb564171c50f9f01455985a532539050bd44d1b81fe584e1e48912"
+    },
+    {
+      "file": "server/src/security/encrypted-state.mjs",
+      "sha256": "212d5a4938d0fb3bf9e39b557e589ea800853ce5cd8ade7e3cef083a6171e1ac"
+    },
+    {
+      "file": "server/src/terminal-commands.mjs",
+      "sha256": "9384dec5183178e6c6ee5d7b763722ace1a381824e39009cb7eb426b8ae8a780"
+    },
+    {
+      "file": "server/src/terminal-view.mjs",
+      "sha256": "a296ddfe3fa5edd3d51fb51113595da9442c30a33f64d1991f7c16616dd22795"
+    },
+    {
+      "file": "server/test/connection.test.mjs",
+      "sha256": "0055c2b8bfdb4659ae3e4dc7f416a54bd56abbd9af332b717d6f75274e6a4746"
+    },
+    {
+      "file": "server/test/element-click.test.mjs",
+      "sha256": "7d371af5815162189d3908a223b3f5e5db6aa053bb4cd9bd0e73a628e93cab51"
+    },
+    {
+      "file": "server/test/encrypted-state.test.mjs",
+      "sha256": "416521c1721e0897504b65ee3cfe152b34edf33925b2577860f104e33e333599"
+    },
+    {
+      "file": "server/test/mcp.test.mjs",
+      "sha256": "f38ac9e67352eac65bcceed0971f9653930fd587e32a58f70fa8d9304de93627"
+    },
+    {
+      "file": "server/test/navigation.test.mjs",
+      "sha256": "772a393ad9b22e2da203b4dfff316a964a10fd7ee22f55c5e634e62c1eb47c31"
+    },
+    {
+      "file": "server/test/oauth-gateway.test.mjs",
+      "sha256": "6e378fff51acc4a77449a9526bbdaa55f7546f258dd60cc25aa7ef98a7b43c2a"
+    },
+    {
+      "file": "server/test/remote-session.test.mjs",
+      "sha256": "fda6221acd45454872217e1699e70b3a8c6443d9dfa234d02be11d59cd7ac9c3"
+    },
+    {
+      "file": "server/test/screen-understanding.test.mjs",
+      "sha256": "3f57352ff960f452b06aa61228d8ba1216736f22d3f4be92fa671867665c59a4"
+    },
+    {
+      "file": "server/test/terminal-view.test.mjs",
+      "sha256": "eda53cf9ee7908183bc70476df7f38ead51b72f34c261ae598c036b507922c74"
+    },
+    {
+      "file": "server/test/text-entry.test.mjs",
+      "sha256": "f785d960681e8c6496661b6d323d66354e4d35e779ea5d54be424d1ce6c6b85e"
+    }
+  ]
+}

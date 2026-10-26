@@ -1,58 +1,104 @@
-![Gemini — Agentic Automation on Android by Eric Xavier Arguelles](AgenticAutomationChat.png)
+<div align="center">
 
-# Agentic Automation on Android
+# Android Agent
 
-A voice-controlled Gemini agent that drives an Android phone — built so blind and low-vision users can operate any Android app, not just native applications. 
-*Inspired by bryanrg22/ios-agent_automation_info
+**Ask your assistant to use your Android phone.**
 
-## What it does
+A self-hosted Android accessibility companion with MCP tools, bounded control sessions, and visible task history.
 
-Hold the Android's Side Button, speak a task — "Open my most recent recruiter message on LinkedIn" — and Gemini takes over the physical phone: looking at the screen, tapping, typing, scrolling, and swiping through ~22*** tool primitives, while AVSpeechSynthesizer narrates every step out loud. A Node.js agent drives the device over USB through the phone's native AccessibilityService; a Kotlin companion app paints live progress into the Dynamic Island.
+[Get started](docs/getting-started.md) · [Architecture](docs/current-architecture.md) · [Evaluation plan](evals/README.md) · [Results](docs/results.md) · [Roadmap](docs/roadmap.md)
 
+</div>
 
-The everyday target is ChatGPT mobile -> authenticated self-hosted server -> Android companion service. Terminal commands, the emulator, and local MCP clients are development tools. Normal use needs no cable or foreground companion screen; the Windows server must stay running. Background availability and mobile authentication are implemented. Independent server-side AI task execution remains a future milestone.
+Android Agent connects a chat assistant to an Android phone through a server you control. The assistant reads accessible screen text and controls, then launches apps, taps, types, scrolls, and verifies what happened. It is designed with hands-free use in mind; usability for blind and low-vision people still requires structured participant testing.
 
-## Project layout
+**Status: working prototype, Android app 0.8.0.** The real-phone tool path has been exercised during development. No AndroidWorld score or accessibility usability score has been measured yet.
 
-| Folder | Purpose |
+<p align="center">
+  <img src="docs/media/task-thinking.png" alt="Emulator preview: a live phone task with request text, thinking progress, elapsed seconds and Stop task" width="280">
+  <img src="docs/media/task-history.png" alt="Emulator preview: local task history showing the request and session duration" width="280">
+</p>
+
+These are emulator UI previews using a synthetic task. They are not benchmark results.
+
+## What you can ask
+
+- “Open Instagram and tell me my follower count.”
+- “Open my conversation with Alex and read the latest three messages, identifying the sender.”
+- “Open Spotify and play a specific song.”
+- “Check a value first, then act only if my condition is met.”
+- “Stop phone control.”
+
+These illustrate supported workflows, not a guarantee that every app exposes usable controls. A request to read an email or message opens the body and scrolls through its available text; inaccessible portions must be reported.
+
+## How it works
+
+```mermaid
+flowchart LR
+    A[Chat assistant: decides next action] -->|HTTPS + OAuth / MCP| B[Self-hosted Node.js server]
+    B <-->|Private authenticated connection| C[Android companion]
+    C --> D[Accessibility screen observations]
+    C --> E[Validated UI actions]
+```
+
+**The assistant is the planner.** The server currently does not run its own model or durable background task worker. The first launch or screen read establishes a session automatically when owner-enabled availability is connected. Screen-bound actions use fresh, single-use snapshots. The phone acknowledges actions and returns observations for verification.
+
+## Capabilities and limits
+
+| Area | Current implementation |
 | --- | --- |
-| `android/` | Native Kotlin companion app, accessibility service, and Android app tests. |
-| `server/src/mcp/` | Tools exposed to ChatGPT and other MCP clients. |
-| `server/src/agent/` | Screen observation, action selection, and task execution. |
-| `server/src/devices/` | Phone connections and session management. |
-| `server/src/security/` | Authentication, device pairing, and authorization. |
-| `server/test/` | Server tests. |
-| `shared/protocol/` | Shared message definitions between the phone and server. |
-| `docs/` | Architecture, setup instructions, and design decisions. |
-| `deploy/` | Self-hosted server deployment configuration. |
-| `tests/integration/` | Tests covering the phone/server connection. |
-| `scripts/` | Development and setup helpers. |
-| `work/` | Temporary local files; excluded from Git. |
-| `outputs/` | Generated deliverables, such as APKs; excluded from Git. |
+| Observation | Accessible text, roles, state, bounds, resource IDs, nearby text; compact or detailed output |
+| Actions | App launch, tap, text replacement, keyboard submit, scrolling, single-stroke swipes, Back |
+| Efficiency | Combined action-and-observe tool, compact observations and device/server timings |
+| App access | Installed apps except Notes, Google Authenticator, Microsoft Authenticator and the companion setup screen |
+| Owner control | Local availability switch, notification Stop, task Stop; locked-device checks |
+| Session limits | Five-minute maximum; 60-second idle expiry |
+| Connection | Windows host, Tailscale private device route, HTTPS OAuth gateway for the assistant |
+| History | Up to 50 encrypted local task requests with session durations; not full chat transcripts |
+| Not implemented | Screenshot-based visual agent, arbitrary coordinate actions, pinch/multitouch, independent model worker, benchmark harness |
 
-## Current status
+Blocked-app protection is app-level; it does not filter equivalent content inside an allowed browser. The owner must enable Android accessibility and notifications. The Windows host must stay awake and online. Device reboot, app updates and Android background restrictions may require reconnecting.
 
-**0.6.0:** companion **Speak a task → editable transcript → Continue in ChatGPT** using on-device speech recognition. You select Android Agent and send the reviewed task in ChatGPT; no API worker or auto-send added. Screen reads now include roles, resource IDs, bounds, state, nearby text and conservative Instagram hints. Target validation tolerates unrelated feed changes while rejecting changed controls. See [voice and navigation setup / file changelog](docs/voice-and-navigation.md). Real S23+ dictation and Instagram acceptance remain pending; 52 server tests and 16 Android JVM tests pass. This supersedes older setup notes below.
+## Get started
 
-**Android 0.5.0:** new dark **Android Agent / AI Phone Automation** Home page, top-right Settings gear, connection controls and animated session status. Accessibility, encrypted saved connections and the default-On availability switch are in Settings. An explicit Off is remembered; actual readiness is shown separately. Availability can resume after verification when the app is opened, with no boot startup. See [current Android UI setup and file changelog](docs/android-agent-ui.md). This supersedes the Android UI/setup portions of earlier guides below. Server behavior and tools are unchanged.
+Follow [the setup guide](docs/getting-started.md) for the Windows server, phone permissions and MCP connection. Build the Android APK from source or use a release only after one has been published. Local generated APKs are not stored in the source tree.
 
-Version 0.4.0 adds one **Agentic control On/Off switch**. Turning it on enables reading and actions together for Settings, YouTube, Instagram, LinkedIn, Google Messages and Samsung Messages. There are no per-app checkboxes or manual five-minute session button. See [current setup, file changelog and acceptance test](docs/agentic-control.md).
+The primary exercised path is the connected MCP tools used in development. Availability in a particular mobile or voice assistant surface must be verified separately. Gemini OAuth compatibility has been added, but broad Gemini/mobile/voice reliability is not established.
 
-ChatGPT starts and stops task sessions while availability remains on between tasks. Each task still has a five-minute maximum and 60-second idle expiry. The notification Stop or switching control off disables availability and task access. Phone/app restarts require turning control on again. Access to unknown apps and the companion's credential screen remains blocked.
+## Validation
 
-The Windows Node.js host and Tailscale must remain running. Windows startup stays manual by default. Pairing is saved encrypted only after a verified connection when Remember is selected. The managed stack preserves unexpired OAuth grants across restart. See [Windows host setup](docs/windows-startup.md).
+Latest recorded local checks: **60 server tests**, **17 Android JVM tests**, and an emulator smoke check covering the task UI, timer, encrypted history and clearing. These check implementation behavior; they do not measure autonomous task success. See [results and evidence](docs/results.md).
 
-The local MCP adapter exposes ten tools, including direct named-app launch and snapshot-bound directional swipe. Swipes are single strokes inside visible targets; arbitrary coordinates, pinch and multi-touch are not implemented. Android launch restrictions and app accessibility can limit tasks. ChatGPT is the planner; no independent server AI worker is implemented.
+```powershell
+cd server
+pnpm install --frozen-lockfile --ignore-scripts
+pnpm test
+```
 
-Validation: 47 server tests and 7 Android JVM tests pass; APK builds. Earlier S23+ Settings navigation and remote start/read/tap/verify/stop were user-verified. Version 0.4.0 switch behavior, social/messaging app launch and gestures still need S23+ acceptance. Older setup guides and changelog entries describe earlier milestones; use the current setup linked above.
+```powershell
+cd android
+.\gradlew.bat testDebugUnitTest assembleDebug
+```
 
-## First milestone
+Requirements: Node.js 22+, pnpm, JDK 17 and Android SDK platform 35. The app targets API 35 and supports API 33+. The new GitHub Actions workflow will run after the project is placed in a GitHub repository; no remote CI pass is claimed yet.
 
-1. Create a Kotlin Android app that builds and installs on the S23+.
-2. Add an owner-enabled accessibility service and a visible way to stop control.
-3. Connect the phone to the self-hosted server using authenticated messages.
-4. Prove screen observation and a single tap on a real device.
-5. Expose task submission, status, and stop tools through MCP.
+## Repository map
 
-The phone owner grants access during setup. Tasks must report when the device is locked or a screen cannot be accessed. ChatGPT integration and the server's model provider are separate configuration choices.
+| Path | Purpose |
+| --- | --- |
+| `android/` | Kotlin companion, accessibility service, encrypted history and Android tests |
+| `server/src/mcp/` | Tool definitions, local HTTP transport and OAuth gateway |
+| `server/src/connection-server.mjs` | Device connection, sessions and validated command delivery |
+| `server/src/security/` | Encrypted saved server state |
+| `server/test/` | Automated server and simulated-device tests |
+| `evals/` | Evaluation protocol and trial record format; no completed benchmark runs |
+| `scripts/` | Windows development and deployment helpers |
+| `docs/` | Current guides, evidence, limitations and historical implementation notes |
 
+## Security, contributing and attribution
+
+Read [SECURITY.md](SECURITY.md) before exposing a server and [CONTRIBUTING.md](CONTRIBUTING.md) before submitting changes. Do not commit credentials, phone contents, recordings or local pairing state.
+
+Inspired by Bryan Ramirez-Gonzalez’s [Agentic Automation on iOS](https://github.com/bryanrg22/ios-agent_automation_info) and [Phone Control](https://github.com/bryanrg22/phone-control). Their architectures and reported results are comparison references, not results for this Android implementation.
+
+**License selection is pending.** No open-source license is granted by this README. Select an appropriate license and review dependency notices before public release.
