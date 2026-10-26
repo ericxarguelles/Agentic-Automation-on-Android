@@ -21,7 +21,7 @@ From the ChatGPT assistant/app, whenever you need it. A self-hosted Android acce
 
 </div>
 
-**Status: working prototype, Android app 0.8.0.** The real-phone tool path has been exercised during development. No AndroidWorld score or accessibility usability score has been measured yet. Excels in multi-step tasks compared to native Gemini assistant.
+**Status: working prototype, Android app 0.8.0.** The real-phone tool path has been exercised during development. No AndroidWorld score or accessibility usability score has been measured yet. Designed for multi-step navigation and tasks across accessible Android apps..
 
 <p align="center">
   <img src="docs/media/task-thinking.png" alt="Emulator preview: a live phone task with request text, thinking progress, elapsed seconds and Stop task" width="280">
@@ -41,7 +41,7 @@ Android Agent connects a chat assistant to an Android phone through a server you
 - “Open Gmail and read out the latest email I've received.”
 - "Open Google and search for Penguins"
 
-Gemini assistant prevents use of any unsupported apps. With this setup your agent can navigate your phone the same way you do, it looks then acts.
+Android Agent can interact with accessible app interfaces, including workflows without a suitable direct integration. With this setup your agent can navigate your phone the same way you do, it looks then acts.
 
 ## When to use it, and when not to
 
