@@ -2,7 +2,7 @@
 
 # Android Agent
 
-**Ask your assistant to use your Android phone.**
+**Hands-free phone control utilzing ChatGPT.**
 
 A self-hosted Android accessibility companion with MCP tools, bounded control sessions, and visible task history.
 
