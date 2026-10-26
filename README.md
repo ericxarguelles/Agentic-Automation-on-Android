@@ -15,7 +15,7 @@ From the ChatGPT assistant/app, whenever you need it. A self-hosted Android acce
 ![Node.js](https://img.shields.io/badge/Node.js-22%2B-339933?logo=nodedotjs&logoColor=white)
 ![Kotlin](https://img.shields.io/badge/Kotlin-2.1.20-7F52FF?logo=kotlin&logoColor=white)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
+[![CI](https://github.com/ericxarguelles/Agentic-Automation-on-Android/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ericxarguelles/Agentic-Automation-on-Android/actions/workflows/ci.yml)
 
 [Get started](docs/getting-started.md) · [Architecture](docs/current-architecture.md) · [Evaluation plan](evals/README.md) · [Results](docs/results.md) · [Roadmap](docs/roadmap.md)
 
