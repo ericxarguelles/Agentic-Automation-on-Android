@@ -6,10 +6,10 @@
 
 From the ChatGPT assistant/app, whenever you need it. A self-hosted Android accessibility companion with MCP tools controlling your phone whenever, wherever.
 
+![Tailscale](https://img.shields.io/badge/Tailscale-242424?logo=tailscale&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-13%2B-3DDC84?logo=android&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-22%2B-339933?logo=nodedotjs&logoColor=white)
 ![Kotlin](https://img.shields.io/badge/Kotlin-2.1.20-7F52FF?logo=kotlin&logoColor=white)
-![Tailscale](https://img.shields.io/badge/Tailscale-242424?logo=tailscale&logoColor=white)
 ![MCP tools](https://img.shields.io/badge/MCP_tools-12-blue)
 
 [Get started](docs/getting-started.md) · [Architecture](docs/current-architecture.md) · [Evaluation plan](evals/README.md) · [Results](docs/results.md) · [Roadmap](docs/roadmap.md)
