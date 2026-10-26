@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sanitized Android Agent evaluation episode",
+  "type": "object",
+  "required": ["run_id", "task_id", "config_id", "track", "trial", "seed", "model", "revision", "status", "wall_ms", "actions", "evidence_ref"],
+  "properties": {
+    "run_id": {"type": "string", "minLength": 1},
+    "task_id": {"type": "string", "minLength": 1},
+    "config_id": {"type": "string", "minLength": 1},
+    "track": {"type": "string", "minLength": 1},
+    "trial": {"type": "integer", "minimum": 1},
+    "seed": {"type": "integer", "minimum": 0},
+    "model": {"type": "string", "minLength": 1},
+    "revision": {"type": "string", "minLength": 1},
+    "status": {"enum": ["passed", "failed", "blocked", "timeout", "infra_error"]},
+    "wall_ms": {"type": "number", "minimum": 0},
+    "actions": {"type": "integer", "minimum": 0},
+    "evidence_ref": {"type": "string", "minLength": 1},
+    "input_tokens": {"type": ["integer", "null"], "minimum": 0},
+    "output_tokens": {"type": ["integer", "null"], "minimum": 0},
+    "cached_input_tokens": {"type": ["integer", "null"], "minimum": 0},
+    "cost_usd": {"type": ["number", "null"], "minimum": 0},
+    "failure_category": {"type": ["string", "null"]},
+    "evaluator_success": {"type": ["boolean", "null"]},
+    "human_success": {"type": ["boolean", "null"]}
+  },
+  "additionalProperties": false
+}
