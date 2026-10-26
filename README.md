@@ -1,6 +1,6 @@
 <div align="center">
 
-# Android Agent
+# Agentic Automation
 
 **Hands-free phone control based in ChatGPT.**
 
