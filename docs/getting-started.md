@@ -59,6 +59,8 @@ If you cannot find the setting, search Settings for **digital assistant**. If Ch
 
 Selecting ChatGPT as the default assistant does not connect it to Android Agent. Complete the server connection in the next section before testing phone control.
 
+Make sure that you are logged into the same ChatGPT account on PC and Phone if using remotely.
+
 ## 7. Connect your assistant
 
 Add your server’s public HTTPS address ending in `/mcp` as an OAuth MCP connection.
