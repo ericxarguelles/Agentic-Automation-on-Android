@@ -106,8 +106,9 @@ The per-step loop — accessible screen text and UI controls in, one validated t
 
 Nine instrumented trials of the same task, with fixes between runs: **81.1 seconds → 6.2 seconds, 4 actions — 92.4% less measured time and 50% fewer actions.** Final delivery was verified separately after timing ended.
 
-[Nine-trial benchmark: 81.1s to 6.2s]<p align="center">
-  <img src="docs/media/Optimization.svg">
+[Nine-trial benchmark: 81.1s to 6.2s]
+<p align="center">
+  <img src="docs/media/optimization.svg">
 
 ## Capabilities and limits
 
