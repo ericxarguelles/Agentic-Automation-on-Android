@@ -38,7 +38,7 @@ Android Agent connects a chat assistant to an Android phone through a server you
 - “Open Gmail and read out the latest email I've received.”
 - "Open Google and search for Penguins"
 
-These illustrate supported workflows, not a guarantee that every app exposes usable controls. A request to read an email or message opens the body and scrolls through its available text; inaccessible portions must be reported.
+Gemini assistant prevents use of any unsupported apps. With this setup your agent can navigate your phone the same way you do, it looks then acts.
 
 ## When to use it, and when not to
 
