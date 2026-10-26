@@ -18,8 +18,6 @@ From the ChatGPT assistant/app, whenever you need it. A self-hosted Android acce
 
 </div>
 
-Android Agent connects a chat assistant to an Android phone through a server you control. The assistant reads accessible screen text and controls, then launches apps, taps, types, scrolls, and verifies what happened. It is designed with hands-free use in mind; usability for blind and low-vision people.
-
 **Status: working prototype, Android app 0.8.0.** The real-phone tool path has been exercised during development. No AndroidWorld score or accessibility usability score has been measured yet. Excels in multi-step tasks compared to native Gemini assistant.
 
 <p align="center">
@@ -27,7 +25,7 @@ Android Agent connects a chat assistant to an Android phone through a server you
   <img src="docs/media/task-history.png" alt="Emulator preview: local task history showing the request and session duration" width="280">
 </p>
 
-These are emulator UI previews using a synthetic task. They are not benchmark results.
+Android Agent connects a chat assistant to an Android phone through a server you control. The assistant reads accessible screen text and controls, then launches apps, taps, types, scrolls, and verifies what happened. It is designed with hands-free use in mind; usability for blind and low-vision people.
 
 ## What you can ask
 
