@@ -1,7 +1,7 @@
 <div align="center">
 
 <p align="center">
-  <img src="docs/media/AgenticAutomationChat.png" width="600">
+  <img src="docs/media/AgenticAutomationChat.png">
   
 # Agentic Automation on Android
 
