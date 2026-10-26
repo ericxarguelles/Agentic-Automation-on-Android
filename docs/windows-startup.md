@@ -1,74 +1,136 @@
-# Getting started
+# Windows server setup
 
-Each user runs their own server and generates their own credentials. You do not connect to the developer’s server.
+Run these steps on your own Windows computer. Your installation generates its own credentials and uses your own Tailscale address.
 
-## 1. Install Android Agent
+Complete the prerequisite installation and dependency steps in [Getting started](getting-started.md) first.
 
-Download [AndroidAgent-0.8.0.apk](../AndroidAgent-0.8.0.apk) onto your Android 13+ phone and install it.
+## 1. Open PowerShell in the project folder
 
-No Android Studio or app-building tools are needed when using this APK. If updating an existing installation, install over it rather than uninstalling first to preserve saved setup.
+Open the extracted repository folder in File Explorer. Right-click an empty area and select **Open in Terminal**.
 
-## 2. Prepare your Windows computer
+The folder should contain `android`, `docs`, `scripts`, and `server`.
 
-Install:
+## 2. Start your server
 
-- [Node.js 22 or later — official download](https://nodejs.org/en/download)
-- [pnpm — official installation instructions](https://pnpm.io/installation)
-- [Tailscale — official download](https://tailscale.com/download)
-  
-Install Tailscale on your phone too, and sign both devices into your own Tailscale account.
-
-Download and extract this repository onto your Windows computer. Keep this folder in place—it contains your server.
-
-## 3. Install the server dependencies once
-
-Open PowerShell in the extracted project folder and run:
+Make sure Tailscale is connected on Windows, then run:
 
 ```powershell
-cd server
-pnpm install --frozen-lockfile --ignore-scripts
-cd ..
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start-windows-stack.ps1
 ```
 
-If installation reports an error, resolve it before continuing. Repeat this step when an update changes the server dependencies.
+On first launch, the script generates your private credentials and saves them encrypted for your Windows account.
 
-## 4. Start your server and retrieve your credentials
+If Tailscale asks you to enable HTTPS or Funnel, complete its instructions and retry.
 
-Follow [Windows server setup](https://github.com/ericxarguelles/Agentic-Automation-on-Android/blob/main/docs/windows-startup.md) to start your server and retrieve **your own pairing token and owner approval key**.
+Keep this terminal open while using the server.
 
-Keep your Windows computer awake and the server running while using Android Agent.
+The launcher configures:
 
-## 5. Connect your phone
+| Connection | Purpose |
+| --- | --- |
+| Public HTTPS port 443 | Authenticated OAuth/MCP connection for your assistant |
+| Private Tailscale HTTPS port 8443 | Connection from your Android phone to your server |
 
-In Android Agent Settings:
+Do not publicly expose port 8443 or remove authentication.
 
-1. Enter your server’s private Tailscale HTTPS address on port 8443.
-2. Enter your device pairing token.
-3. Enable Android Agent’s accessibility and notification permissions.
-4. Connect and confirm the server card says Connected.
+## 3. Retrieve your pairing token and owner approval key
 
-## 6. Connect your assistant
+Leave the server running. Open a second PowerShell terminal in the same project folder, using the same Windows account.
 
-Add your server’s public HTTPS address ending in `/mcp` as an OAuth MCP connection.
+Run:
 
-Complete the approval flow using your owner approval key only on your own server’s approval page. Never paste credentials into an assistant conversation.
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start-windows-stack.ps1 -ShowSecrets
+```
 
-Refresh the tools and start a new chat.
+It displays:
 
-## 7. Test it
+- **Android address:** your private server address, ending in `:8443`.
+- **Pairing token:** enter this in Android Agent.
+- **Owner approval key:** enter this only on your own server’s authorization page when connecting your assistant.
 
-Ask the assistant to open Settings and read the Android version. Verify that Stop works before trying more involved tasks.
+These are your installation’s credentials. Never upload them to GitHub, include them in screenshots, or paste them into an assistant conversation.
 
-Your phone must be unlocked, Tailscale connected, and your Windows server running.
+Close this second terminal after setup.
 
-## Current release status
+## 4. Connect Android Agent
 
-The provided 0.8.0 APK is a development/debug build. A production release-signing process is still pending.
+On your phone:
 
-Owner-key/pairing-token exposure requires credential rotation and re-pairing,
-not just a restart. This project does not yet provide a one-command rotation
-workflow. Stop the server and phone access, retain private backups only if needed,
-and follow a reviewed reset of the installation's encrypted settings and OAuth
-state before reconnecting clients. Never restore stale OAuth state to undo a
-revocation. Access tokens expire after one hour; registrations and refresh tokens
-have their own 24-hour limits. Reconnection may be necessary after expiry.
+1. Connect Tailscale using your own account.
+2. Open Android Agent Settings.
+3. Enter the **Android address** and **pairing token** displayed by your server.
+4. Enable Android Agent’s accessibility and notification permissions.
+5. Connect and confirm the server card says **Connected**.
+
+Your phone must be unlocked for phone-control tasks.
+
+## 5. Connect your assistant
+
+Use your server’s public HTTPS hostname with `/mcp`.
+
+For example, if your Android address is:
+
+```text
+https://YOUR-MACHINE.YOUR-TAILNET.ts.net:8443
+```
+
+Your assistant’s MCP URL is:
+
+```text
+https://YOUR-MACHINE.YOUR-TAILNET.ts.net/mcp
+```
+
+Replace the example hostname with your own. Do not include `:8443` in the assistant’s MCP URL.
+
+Choose **OAuth** when connecting. During authorization, verify that the approval page belongs to your own server hostname, then enter your **owner approval key**.
+
+The owner approval key is not an OAuth client secret. If automatic registration fails, investigate the error rather than entering that key as a client secret or disabling authentication.
+
+Refresh the tools and start a new chat after connecting.
+
+## 6. Test the connection
+
+Ask the assistant to open Settings and read the Android version.
+
+Verify that the result matches your phone and that Android Agent’s Stop control works.
+
+For server diagnostics, run this in another terminal:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start-windows-stack.ps1 -Status
+```
+
+## Stop and restart
+
+- **Stop phone access:** tap Disconnect in Android Agent.
+- **Stop a foreground server:** press Ctrl+C in its PowerShell terminal.
+- **Restart:** run the same startup command from step 2.
+
+Closing an unrelated terminal does not stop a background server.
+
+Saved credentials and unexpired OAuth grants persist across restarts. Active phone-control sessions do not. Keep the project folder in place.
+
+## Keep private files private
+
+Never upload the `work` folder. It contains your installation’s encrypted settings and runtime state.
+
+If credentials are exposed, restarting alone does not replace them. Stop access and rotate the affected credentials before reconnecting.
+
+## Optional: start at Windows login
+
+After manual setup works, run:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\install-windows-startup.ps1
+```
+
+This schedules startup for your Windows account at login. It does not start the server immediately.
+
+To remove future login startup:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\install-windows-startup.ps1 -Remove
+```
+
+Removing startup does not stop an already-running server.
