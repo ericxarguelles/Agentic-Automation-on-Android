@@ -1,4 +1,5 @@
 param([switch]$ShowSecrets, [switch]$Status, [switch]$Unattended)
+if ($Unattended) { throw 'Automatic startup is disabled. Run this launcher manually without -Unattended.' }
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $stateDir = Join-Path $projectRoot 'work\windows-stack'
@@ -15,8 +16,6 @@ if ($Status) {
     catch { Write-Output 'Local OAuth metadata unavailable.' }
     exit 0
 }
-if ($Unattended -and $ShowSecrets) { throw 'Secrets cannot be printed in unattended mode.' }
-if ($Unattended -and -not (Test-Path -LiteralPath $settingsPath)) { throw 'Run the launcher interactively once before enabling automatic startup.' }
 New-Item -ItemType Directory -Path $stateDir -Force | Out-Null
 $identityHash = [Convert]::ToBase64String([Security.Cryptography.SHA256]::Create().ComputeHash([Text.Encoding]::UTF8.GetBytes($projectRoot))).Replace('/', '_')
 $mutex = [Threading.Mutex]::new($false, ('Local\AndroidPhoneControl-' + $identityHash))
@@ -84,16 +83,12 @@ try {
     $prior = $env:APC_STACK_CONFIG
     try {
         $env:APC_STACK_CONFIG = $config | ConvertTo-Json -Compress
-        do {
-            if ($Unattended) {
-                & $nodePath (Join-Path $projectRoot 'server\scripts\start-windows-stack.mjs') *>> (Join-Path $stateDir 'host.log')
-            } else { & $nodePath (Join-Path $projectRoot 'server\scripts\start-windows-stack.mjs') }
-            $resultCode = $LASTEXITCODE
-            if ($Unattended) { Start-Sleep -Seconds 5 }
-        } while ($Unattended)
+        & $nodePath (Join-Path $projectRoot 'server\scripts\start-windows-stack.mjs')
+        $resultCode = $LASTEXITCODE
     } finally { $env:APC_STACK_CONFIG = $prior }
     exit $resultCode
 } finally {
     if ($locked) { $mutex.ReleaseMutex() }
     $mutex.Dispose()
 }
+

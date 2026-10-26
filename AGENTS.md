@@ -1,5 +1,9 @@
 # Phone-control procedures
 
+## Server lifecycle
+
+Start or restart the server only when the user explicitly requests it. Use the manual foreground launcher. Do not start background hosts, restart loops, scheduled tasks, or automatic startup. Read-only diagnostics do not authorize starting a server.
+
 ## Conditional message workflow
 
 For an explicitly requested Google Messages recipient and exact message, prefer `phone_send_message` when exposed. Supply `recipient`, `text`, and faithful `task_text`. It requires an idle session, verifies fresh screens internally, opens an exact unique conversation (submitting Search if needed), verifies the recipient header and exact draft, attempts Send once, checks delivery for up to three seconds, and stops its own session. It stops on ambiguity, unsupported UI, existing drafts or errors. A composer type rejected with `TARGET_DISAPPEARED`, `TARGET_CHANGED` or `WINDOW_STATE_CHANGED` before Android performs text entry may recover once after a fresh read and repeated recipient, attachment and empty-draft verification. This does not apply to uncertain actions or Send. Inspect `status`, `send_attempted`, `send_acknowledged`, `delivery`, `session_stopped` and the trace; a completed tool call does not itself establish delivery. Never repeat the workflow automatically after an uncertain Send. Other apps continue to use individual controls. Benchmark traces retain internal action/read phases and workflow errors.

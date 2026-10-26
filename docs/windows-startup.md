@@ -1,139 +1,171 @@
-# Windows server setup
+# Set up your own Windows Node.js server
 
-Run these steps on your own Windows computer. Your installation generates its own credentials and uses your own Tailscale address.
+Use your own Windows computer, Android phone and Tailscale account. The project
+contains no shared pairing token or owner approval key. Each installation creates
+its own random credentials. No model API key is required for the MCP relay itself.
+The connected assistant chooses the actions.
 
-Complete the prerequisite installation and dependency steps in [Getting started](getting-started.md) first.
+## 1. Install prerequisites
 
-## 1. Open PowerShell in the project folder
+- Install Node.js 22 or later and pnpm. Check `node --version` and `pnpm --version`.
+- Install Tailscale on Windows and Android and sign in to the intended tailnet.
+- Install Android Studio/JDK 17 if building the APK from source. Install Android
+  SDK platform 35, then run `./gradlew.bat assembleDebug` inside `android`.
+- Keep this server online and awake while using phone automation.
 
-Open the extracted repository folder in File Explorer. Right-click an empty area and select **Open in Terminal**.
+Official downloads: [Node.js](https://nodejs.org/en/download) and
+[Tailscale](https://tailscale.com/download). Review project code before running it.
 
-The folder should contain `android`, `docs`, `scripts`, and `server`.
+## 2. Install the server dependencies
 
-## 2. Start your server
+Open PowerShell in your own project folder. All following commands are relative
+ to that folder; do not copy another person's Windows path.
 
-Make sure Tailscale is connected on Windows, then run:
+```powershell
+Set-Location 'C:\path\to\android-agent'
+Push-Location .\server
+pnpm install --frozen-lockfile --ignore-scripts
+if ($LASTEXITCODE -ne 0) { throw 'Dependency installation failed.' }
+Pop-Location
+```
+
+## 3. Start the managed server once
+
+Make sure no older instance of this project's server is already running.
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start-windows-stack.ps1
 ```
 
-On first launch, the script generates your private credentials and saves them encrypted for your Windows account.
+This is a per-process script-policy setting, not a permanent change to Windows
+execution policy. Do not run the command as Administrator unless your own system
+setup explicitly requires it.
 
-If Tailscale asks you to enable HTTPS or Funnel, complete its instructions and retry.
+The launcher reads **your** Tailscale machine hostname and creates
+`work/windows-stack/settings.dpapi` encrypted for the current Windows account.
+It generates four independent values: device pairing token, local MCP bearer
+ token, owner approval key and OAuth state-encryption key. It does not print
+credentials during a normal launch. It starts these loopback listeners:
 
-Keep this terminal open while using the server.
+| Listener | Purpose | External access |
+| --- | --- | --- |
+| 8787 | Android device bridge | Private Tailscale HTTPS 8443 only |
+| 8788 | Internal MCP server | Loopback only |
+| 8789 | OAuth MCP gateway | Public Tailscale Funnel HTTPS 443 |
 
-The launcher configures:
+Tailscale may ask you to enable HTTPS/Funnel for your account. Complete its own
+flow and rerun if needed. The launcher checks existing routes and refuses to
+replace conflicting ones. Never expose the device bridge on public Funnel,
+open these ports through your router, or remove bearer/OAuth authentication.
 
-| Connection | Purpose |
-| --- | --- |
-| Public HTTPS port 443 | Authenticated OAuth/MCP connection for your assistant |
-| Private Tailscale HTTPS port 8443 | Connection from your Android phone to your server |
+Keep this terminal open for a foreground server. Optional login startup is
+explained below. If startup fails after configuring one route, inspect Tailscale
+status before retrying; routes may persist even when Node.js stops.
 
-Do not publicly expose port 8443 or remove authentication.
+## 4. Obtain YOUR pairing token and owner approval key
 
-## 3. Retrieve your pairing token and owner approval key
-
-Leave the server running. Open a second PowerShell terminal in the same project folder, using the same Windows account.
-
-Run:
+Open a **second, private PowerShell terminal** in the same project folder,
+under the same Windows account:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start-windows-stack.ps1 -ShowSecrets
 ```
 
-It displays:
-
-- **Android address:** your private server address, ending in `:8443`.
-- **Pairing token:** enter this in Android Agent.
-- **Owner approval key:** enter this only on your own server’s authorization page when connecting your assistant.
-
-These are your installation’s credentials. Never upload them to GitHub, include them in screenshots, or paste them into an assistant conversation.
-
-Close this second terminal after setup.
-
-## 4. Connect Android Agent
-
-On your phone:
-
-1. Connect Tailscale using your own account.
-2. Open Android Agent Settings.
-3. Enter the **Android address** and **pairing token** displayed by your server.
-4. Enable Android Agent’s accessibility and notification permissions.
-5. Connect and confirm the server card says **Connected**.
-
-Your phone must be unlocked for phone-control tasks.
-
-## 5. Connect your assistant
-
-Use your server’s public HTTPS hostname with `/mcp`.
-
-For example, if your Android address is:
+This reads your encrypted local settings. It does not start another server or
+replace existing credentials. It prints three labelled values:
 
 ```text
-https://YOUR-MACHINE.YOUR-TAILNET.ts.net:8443
+Android address: https://YOUR-MACHINE.YOUR-TAILNET.ts.net:8443
+Pairing token: [YOUR PRIVATE RANDOM TOKEN]
+Owner approval key: [YOUR PRIVATE RANDOM KEY]
 ```
 
-Your assistant’s MCP URL is:
+The bracketed text above is explanatory; no real credentials are included here.
+Do not run this while screen-sharing, recording, using a shared terminal, or
+saving a terminal transcript. Close this terminal after setup. Do not paste its
+output into chat, GitHub, screenshots, logs or an issue.
+
+| Value | Where to use it | Where NOT to use it |
+| --- | --- | --- |
+| Android address | Android Agent > Settings > Server connection | Not the assistant's MCP URL |
+| Pairing token | Android Agent's pairing-token field | Not an OAuth client secret |
+| Owner approval key | Approval form at your own server hostname during assistant connection | Not the phone token or an assistant chat message |
+| Local MCP bearer token | Internal server-to-server forwarding, managed automatically | Not needed for normal phone/assistant setup |
+| OAuth state-encryption key | Managed automatically in encrypted settings | Never enter it into a client |
+
+## 5. Connect the phone
+
+Install the APK on the phone you own. Open Android Agent > Settings and enter
+**your Android address and pairing token** from the preceding command. Enable
+Android Agent accessibility and notification permissions locally. Connect and
+verify that the single server card says Connected. Optional saved configuration
+is encrypted on the phone. Keep Tailscale connected on the phone.
+
+The phone must be unlocked for control. Notes, Google Authenticator, Microsoft
+Authenticator and the companion credential screen remain excluded. The local
+availability switch and notification Stop revoke phone access.
+
+## 6. Connect the assistant
+
+Use the public address printed by your server, ending in `/mcp`:
 
 ```text
 https://YOUR-MACHINE.YOUR-TAILNET.ts.net/mcp
 ```
 
-Replace the example hostname with your own. Do not include `:8443` in the assistant’s MCP URL.
+Use OAuth when adding the MCP connection. Dynamic client registration generates
+client credentials as required; **do not enter the owner approval key as an
+OAuth client secret**. Complete the approval flow only if you initiated it.
+Check that the owner-key form is served from your own HTTPS hostname before
+entering your owner approval key. Never type it into the assistant conversation.
 
-Choose **OAuth** when connecting. During authorization, verify that the approval page belongs to your own server hostname, then enter your **owner approval key**.
+If automatic registration fails, retain authentication and inspect the failure;
+do not switch to No authentication. Callback support and available custom apps
+vary by assistant. See [Gemini notes](gemini-connection.md). Refresh tools after
+server updates and start a new chat. Begin with a simple read-only request such
+as opening Settings and reading the Android version, then verify local Stop.
 
-The owner approval key is not an OAuth client secret. If automatic registration fails, investigate the error rather than entering that key as a client secret or disabling authentication.
-
-Refresh the tools and start a new chat after connecting.
-
-## 6. Test the connection
-
-Ask the assistant to open Settings and read the Android version.
-
-Verify that the result matches your phone and that Android Agent’s Stop control works.
-
-For server diagnostics, run this in another terminal:
+## 7. Check routing and server status
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start-windows-stack.ps1 -Status
 ```
 
-## Stop and restart
+Expect loopback listeners on 8787/8788/8789, public HTTPS 443 forwarding only to
+8789, and private HTTPS 8443 forwarding only to 8787. There must be no public
+AllowFunnel entry on 8443. Status is diagnostic; a successful connection and a
+verified phone operation provide separate end-to-end evidence.
 
-- **Disconnect phone:** tap **Disconnect** in Android Agent.
-- **Stop server:** press **Ctrl+C** in its PowerShell window. For a background server, find its process:
-  ```powershell
-  Get-CimInstance Win32_Process -Filter "Name = 'node.exe'" |
-    Select-Object ProcessId, CommandLine
-  ```
-  Find your project’s `server\scripts\start-windows-stack.mjs`, then run `Stop-Process -Id <ProcessId>` using its actual process ID.
-- **Restart:** run the startup command from step 2.
+## Manual startup and stopping
 
-Disconnecting Tailscale or closing an unrelated terminal does not stop the server. Saved credentials and unexpired OAuth grants persist; active sessions do not.
+Disconnect in Android Agent to stop phone access. For a foreground Windows
+server, press Ctrl+C in its own terminal. Closing an unrelated terminal does not
+stop a background host. Stop only this project's identified process/task.
+Tailscale routes remain configured even after Node.js stops; disabling all
+Tailscale configuration may disrupt other services and is not the normal stop.
 
-## Keep private files private
+Restart using the same launcher and Windows account. Pairing and unexpired OAuth
+grants persist; active sessions and snapshots do not. A user-requested launch or
+screen read starts a bounded session automatically when availability is ready.
 
-Never upload the `work` folder. It contains your installation’s encrypted settings and runtime state.
+Server startup is manual only. The launcher runs once in the foreground and does
+not restart the server after exit. The former -Unattended option is rejected;
+the startup installer no longer creates login tasks. Its -Remove option remains
+available to remove a previously installed task. Removing a task does not stop
+existing processes or remove saved Tailscale routes. Assistants must wait for an
+explicit user request before starting or restarting the server.
+## Credential storage and recovery
 
-If credentials are exposed, restarting alone does not replace them. Stop access and rotate the affected credentials before reconnecting.
+`settings.dpapi` is Windows-account/machine scoped. The managed gateway saves
+OAuth state encrypted in `work/windows-stack/oauth-state.bin`. Never commit or
+casually copy these files. A different Windows account or server needs new setup
+or a reviewed migration; don't reuse another person's state.
 
-## Optional: start at Windows login
+Owner-key/pairing-token exposure requires credential rotation and re-pairing,
+not just a restart. This project does not yet provide a one-command rotation
+workflow. Stop the server and phone access, retain private backups only if needed,
+and follow a reviewed reset of the installation's encrypted settings and OAuth
+state before reconnecting clients. Never restore stale OAuth state to undo a
+revocation. Access tokens expire after one hour; registrations and refresh tokens
+have their own 24-hour limits. Reconnection may be necessary after expiry.
 
-After manual setup works, run:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\install-windows-startup.ps1
-```
-
-This schedules startup for your Windows account at login. It does not start the server immediately.
-
-To remove future login startup:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\install-windows-startup.ps1 -Remove
-```
-
-Removing startup does not stop an already-running server.
