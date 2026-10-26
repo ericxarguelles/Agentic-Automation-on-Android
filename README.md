@@ -4,7 +4,7 @@
 
 **Hands-free phone control based in ChatGPT.**
 
-From the ChatGPT app, wherever you are. A self-hosted Android accessibility companion with MCP controlling your phone whenever, wherever.
+From the ChatGPT assistant/app, whenever you need it. A self-hosted Android accessibility companion with MCP tools controlling your phone whenever, wherever.
 
 [Get started](docs/getting-started.md) · [Architecture](docs/current-architecture.md) · [Evaluation plan](evals/README.md) · [Results](docs/results.md) · [Roadmap](docs/roadmap.md)
 
