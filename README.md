@@ -103,4 +103,4 @@ Inspired by Bryan Ramirez-Gonzalez’s [Agentic Automation on iOS](https://githu
 
 **License selection is pending.** No open-source license is granted by this README. Select an appropriate license and review dependency notices before public release.
 ---
-**Eric Xavier Arguelles** · UCI BME '28 · LinkedIn · GitHub
+**Eric Xavier Arguelles** · UCI BME '28 · [LinkedIn](https://www.linkedin.com/in/eric-arguelles/) · [GitHub](https://github.com/ericxarguelles)
