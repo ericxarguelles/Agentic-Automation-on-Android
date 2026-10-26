@@ -57,6 +57,7 @@ Direct integrations and built-in assistants can be more convenient for simple ta
 | Use an app without a suitable direct integration | **Android Agent** | It can interact with the app’s accessible interface |
 | Check something first, then act only if a condition is met | **Android Agent** | It can inspect the result and choose the next action based on your instruction |
 | Operate your phone hands-free through a connected voice assistant | **Android Agent** | It can carry out supported screen-based tasks through spoken requests |
+| Control your phone from your Computer | **Android Agent** | As long as your phone isn't offline and locked, you can control every action necessary from your computer to your phone through ChatGPT|
 
 App accessibility and Android permissions can limit what the agent can do. Your phone must be unlocked, Android Agent must be connected, and your self-hosted server must remain online. Multi-step capability does not guarantee that every workflow will succeed.
 
@@ -65,17 +66,14 @@ App accessibility and Android permissions can limit what the agent can do. Your 
 - *“Open Settings and turn off notifications for these three games.”*  
   Navigate each app’s notification settings and verify the requested changes.
 
-- *“Open Instagram and read the latest three messages from Alex, clearly identifying who sent each one. Then open Spotify and play my selected playlist.”*  
+- *“Open Instagram and read the latest three messages from Alex. Then open Spotify and play my Liked Songs9 playlist.”*  
   Complete a sequence across two apps from one request.
 
-- *“Open Instagram and check my follower count. If it’s over 1,000, message Alex ‘We reached the goal!’ Otherwise, just tell me the count.”*  
+- *“Open Instagram and check my follower count. If it’s over 1,000, message Alex ‘We reached the goal!’ Otherwise, just tell me the count 😔.”*  
   Read information first, then act only when the condition is satisfied.
 
-- *“Open my latest email from the recruiter and read the entire body aloud. Scroll and expand the message if necessary, and tell me if any part is inaccessible.”*  
-  Read beyond an inbox preview while reporting any missing content.
-
-- *“Open the Microsoft app, check which account is selected, and take me to the account-switching screen. Stop before entering a password.”*  
-  Navigate a troubleshooting workflow with a clear stopping point.
+- *“Open my latest email from the ChatGPT recruiter and read the entire body aloud.”*  
+  Read an inbox message.
 
 - *“Open Settings, find this app’s permissions, and tell me which permissions are currently enabled. Don’t change anything.”*  
   Inspect a setting several screens deep without modifying it.
