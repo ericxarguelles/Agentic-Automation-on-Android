@@ -1,6 +1,9 @@
 <div align="center">
 
-# Agentic Automation
+<p align="center">
+  <img src="docs/media/AgenticAutomationChat.png" width="280">
+  
+# Agentic Automation on Android
 
 **Hands-free phone control based in ChatGPT.**
 
