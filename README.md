@@ -27,6 +27,8 @@ From the ChatGPT assistant/app, whenever you need it. A self-hosted Android acce
 
 Android Agent connects a chat assistant to an Android phone through a server you control. The assistant reads accessible screen text and controls, then launches apps, taps, types, scrolls, and verifies what happened. It is designed with hands-free use in mind; usability for blind and low-vision people.
 
+**Demos:** [Full task end-to-end](docs/media/agentic_android_demo.mp4) · [Conditional task on a real Android phone](docs/media/agentic_android_conditional.mp4)
+
 ## What you can ask
 
 - “Open Instagram and tell me my follower count.”
