@@ -102,4 +102,5 @@ Read [SECURITY.md](SECURITY.md) before exposing a server and [CONTRIBUTING.md](C
 Inspired by Bryan Ramirez-Gonzalez’s [Agentic Automation on iOS](https://github.com/bryanrg22/ios-agent_automation_info) and [Phone Control](https://github.com/bryanrg22/phone-control). Their architectures and reported results are comparison references, not results for this Android implementation.
 
 **License selection is pending.** No open-source license is granted by this README. Select an appropriate license and review dependency notices before public release.
+---
 **Eric Xavier Arguelles** · UCI BME '28 · LinkedIn · GitHub
