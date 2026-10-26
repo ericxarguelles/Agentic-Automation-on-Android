@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="1540" viewBox="0 0 2200 1540">
+<title>Nine-trial Android messaging benchmark</title>
+<rect width="2200" height="1540" fill="#24221f"/>
+<text x="55" y="68.03999999999999" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="700" fill="#f6f3ed">Nine trials • Android messaging benchmark</text>
+<text x="57" y="108.84" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="400" fill="#c2bbb0">Google Messages  /  Samsung S23+  /  GPT-6 (operator label)  /  October 25–26, 2026</text>
+<rect x="40" y="142" width="1190" height="960" rx="24" fill="#302d29" stroke="#514c43" stroke-width="2"/>
+<rect x="1250" y="142" width="910" height="960" rx="24" fill="#302d29" stroke="#514c43" stroke-width="2"/>
+<text x="74" y="195.12" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="32" font-weight="700" fill="#f6f3ed">Measured run time — trials 1–9</text>
+<text x="74" y="233.93" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#c2bbb0">Task: “Text Tote Hi how are ya” — Samsung S23+, GPT-6</text>
+<path d="M125 918.0 L1190 918.0" stroke="#3d3933" stroke-width="2"/>
+<text x="109" y="922.11" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#c2bbb0">0s</text>
+<path d="M125 812.5 L1190 812.5" stroke="#3d3933" stroke-width="2"/>
+<text x="109" y="816.61" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#c2bbb0">15s</text>
+<path d="M125 707.0 L1190 707.0" stroke="#3d3933" stroke-width="2"/>
+<text x="109" y="711.11" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#c2bbb0">30s</text>
+<path d="M125 601.5 L1190 601.5" stroke="#3d3933" stroke-width="2"/>
+<text x="109" y="605.61" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#c2bbb0">45s</text>
+<path d="M125 496.0 L1190 496.0" stroke="#3d3933" stroke-width="2"/>
+<text x="109" y="500.11" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#c2bbb0">60s</text>
+<path d="M125 390.5 L1190 390.5" stroke="#3d3933" stroke-width="2"/>
+<text x="109" y="394.61" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#c2bbb0">75s</text>
+<path d="M125 285.0 L1190 285.0" stroke="#3d3933" stroke-width="2"/>
+<text x="109" y="289.11" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#c2bbb0">90s</text>
+<rect x="159" y="347.6401748666667" width="74" height="570.3598251333333" rx="8" fill="#ecad33"/>
+<text x="196" y="331.30017486666674" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#f6f3ed">81.1s</text>
+<text x="196" y="952.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="700" fill="#f6f3ed">Run 1</text>
+<text x="196" y="987.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">8 actions</text>
+<text x="196" y="1018.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">11 calls</text>
+<rect x="276" y="494.9400837" width="74" height="423.0599163" rx="8" fill="#ecad33"/>
+<text x="313" y="478.6000837" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#f6f3ed">60.2s</text>
+<text x="313" y="952.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="700" fill="#f6f3ed">Run 2</text>
+<text x="313" y="987.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">7 actions</text>
+<text x="313" y="1018.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">9 calls</text>
+<rect x="393" y="335.28956416666665" width="74" height="582.7104358333333" rx="8" fill="#ecad33"/>
+<text x="430" y="318.9495641666667" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#f6f3ed">82.8s</text>
+<text x="430" y="952.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="700" fill="#f6f3ed">Run 3</text>
+<text x="430" y="987.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">7 actions</text>
+<text x="430" y="1018.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">9 calls</text>
+<rect x="510" y="456.80153830000006" width="74" height="461.19846169999994" rx="8" fill="#ecad33"/>
+<text x="547" y="440.4615383000001" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#f6f3ed">65.6s</text>
+<text x="547" y="952.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="700" fill="#f6f3ed">Run 4</text>
+<text x="547" y="987.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">6 actions</text>
+<text x="547" y="1018.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">9 calls</text>
+<rect x="627" y="853.1789291333333" width="74" height="64.82107086666666" rx="8" fill="#c75b4d"/>
+<text x="664" y="836.8389291333333" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#f6f3ed">9.2s</text>
+<text x="664" y="952.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="700" fill="#f6f3ed">Run 5</text>
+<text x="664" y="987.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">4 actions</text>
+<text x="664" y="1018.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">1 calls</text>
+<rect x="744" y="889.4907983" width="74" height="28.5092017" rx="8" fill="#c75b4d"/>
+<text x="781" y="873.1507983" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#f6f3ed">4.1s</text>
+<text x="781" y="952.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="700" fill="#f6f3ed">Run 6</text>
+<text x="781" y="987.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">2 actions</text>
+<text x="781" y="1018.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">1 calls</text>
+<rect x="861" y="851.3181553" width="74" height="66.6818447" rx="8" fill="#c75b4d"/>
+<text x="898" y="834.9781552999999" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#f6f3ed">9.5s</text>
+<text x="898" y="952.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="700" fill="#f6f3ed">Run 7</text>
+<text x="898" y="987.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">4 actions</text>
+<text x="898" y="1018.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">1 calls</text>
+<rect x="978" y="873.3965693333333" width="74" height="44.60343066666667" rx="8" fill="#ecad33"/>
+<text x="1015" y="857.0565693333333" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#f6f3ed">6.3s</text>
+<text x="1015" y="952.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="700" fill="#f6f3ed">Run 8</text>
+<text x="1015" y="987.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">4 actions</text>
+<text x="1015" y="1018.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">1 calls</text>
+<rect x="1095" y="874.6405198333333" width="74" height="43.359480166666664" rx="8" fill="#11a381"/>
+<text x="1132" y="858.3005198333333" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#f6f3ed">6.2s</text>
+<text x="1132" y="952.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="700" fill="#f6f3ed">Run 9</text>
+<text x="1132" y="987.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">4 actions</text>
+<text x="1132" y="1018.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">1 calls</text>
+<rect x="125" y="1054" width="20" height="20" rx="4" fill="#c75b4d"/>
+<text x="157" y="1068.02" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#c2bbb0">failed / stopped</text>
+<rect x="510" y="1054" width="20" height="20" rx="4" fill="#ecad33"/>
+<text x="542" y="1068.02" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#c2bbb0">fix iterations</text>
+<rect x="875" y="1054" width="20" height="20" rx="4" fill="#11a381"/>
+<text x="907" y="1068.02" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#c2bbb0">verified success</text>
+<text x="1283" y="196.12" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="32" font-weight="700" fill="#f6f3ed">Fixes and findings between runs</text>
+<text x="1283" y="232.2" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="400" fill="#c2bbb0">Recovered from earlier chats and implementation records.</text>
+<rect x="1283" y="265" width="88" height="38" rx="18" fill="#ecad33"/>
+<text x="1327" y="287.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="700" fill="#24221f">1 → 2</text>
+<text x="1389" y="285.75" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#f6f3ed">Remove duplicate screen text</text>
+<text x="1389" y="319.29" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#c2bbb0">Omit visible text repeated exactly in returned action labels.</text>
+<rect x="1283" y="367" width="88" height="38" rx="18" fill="#ecad33"/>
+<text x="1327" y="389.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="700" fill="#24221f">2 → 3</text>
+<text x="1389" y="387.75" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#f6f3ed">Reduce redundant tool responses</text>
+<text x="1389" y="421.29" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#c2bbb0">Full data once; shorter status/guidance + per-call gap reporting.</text>
+<rect x="1283" y="469" width="88" height="38" rx="18" fill="#ecad33"/>
+<text x="1327" y="491.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="700" fill="#24221f">3 → 4</text>
+<text x="1389" y="489.75" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#f6f3ed">850 ms post-send delivery check</text>
+<text x="1389" y="523.29" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#c2bbb0">Read immediately; return early on delivery; never resend.</text>
+<rect x="1283" y="571" width="88" height="38" rx="18" fill="#ecad33"/>
+<text x="1327" y="593.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="700" fill="#24221f">4 → 5</text>
+<text x="1389" y="591.75" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#f6f3ed">One conditional send workflow</text>
+<text x="1389" y="625.29" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#c2bbb0">Separate assistant exchanges → one guarded server workflow.</text>
+<rect x="1283" y="673" width="88" height="38" rx="18" fill="#ecad33"/>
+<text x="1327" y="695.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="700" fill="#24221f">5 → 6</text>
+<text x="1389" y="693.75" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#f6f3ed">Recognize the observed S23+ layout</text>
+<text x="1389" y="727.29" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#c2bbb0">Added conversation-row and toolbar IDs after Run 5 stopped.</text>
+<rect x="1283" y="775" width="88" height="38" rx="18" fill="#ecad33"/>
+<text x="1327" y="797.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="700" fill="#24221f">6 → 7</text>
+<text x="1389" y="795.75" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#f6f3ed">Recognize a truly empty RCS composer</text>
+<text x="1389" y="829.29" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#c2bbb0">Require placeholder + voice-record evidence + no Send.</text>
+<rect x="1283" y="877" width="88" height="38" rx="18" fill="#ecad33"/>
+<text x="1327" y="899.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="700" fill="#24221f">7 → 8</text>
+<text x="1389" y="897.75" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#f6f3ed">Command polling + launch readiness</text>
+<text x="1389" y="931.29" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#c2bbb0">Remove 750 ms command-loop sleep; check launch readiness.</text>
+<rect x="1283" y="979" width="88" height="38" rx="18" fill="#ecad33"/>
+<text x="1327" y="1001.2" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="20" font-weight="700" fill="#24221f">8 → 9</text>
+<text x="1389" y="999.75" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#f6f3ed">Receipt parsing + toolbar readiness</text>
+<text x="1389" y="1033.29" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="400" fill="#c2bbb0">U+202F timestamp support documented; stale server reloaded.</text>
+<rect x="40" y="1122" width="2120" height="184" rx="24" fill="#302d29" stroke="#514c43" stroke-width="2"/>
+<text x="74" y="1168.21" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="31" font-weight="700" fill="#f6f3ed">Where Run 9’s 6.165 seconds went</text>
+<rect x="74" y="1190" width="392.01178292109057" height="43" rx="0" fill="#11a381"/>
+<text x="270.0058914605453" y="1215.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="700" fill="#f6f3ed">1.179s</text>
+<text x="270.0058914605453" y="1264.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#c2bbb0">Device actions · 19.1%</text>
+<rect x="466.01178292109057" y="1190" width="1238.3824193756382" height="43" rx="0" fill="#8070de"/>
+<text x="1085.2029926089097" y="1215.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="700" fill="#f6f3ed">3.724s</text>
+<text x="1085.2029926089097" y="1264.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#c2bbb0">Accessibility reads · 60.4%</text>
+<rect x="1704.3942022967287" y="1190" width="419.58318565481267" height="43" rx="0" fill="#ecad33"/>
+<text x="1914.185795124135" y="1215.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="700" fill="#f6f3ed">1.262s</text>
+<text x="1914.185795124135" y="1264.93" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#c2bbb0">Server overhead · 20.5%</text>
+<text x="74" y="1295.47" text-anchor="start" font-family="Segoe UI,Arial,sans-serif" font-size="17" font-weight="400" fill="#c2bbb0">Unobserved gap: 0.068 ms (&lt;0.01%). AI inference is unavailable; reads are not screenshots.</text>
+<rect x="40" y="1326" width="515" height="155" rx="24" fill="#302d29"/>
+<text x="297" y="1380.32" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="52" font-weight="700" fill="#ecad33">13.15×</text>
+<text x="297" y="1421.84" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="400" fill="#c2bbb0">measured speed ratio</text>
+<text x="297" y="1458.11" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#c2bbb0">81.094s → 6.165s</text>
+<rect x="575" y="1326" width="515" height="155" rx="24" fill="#302d29"/>
+<text x="832" y="1380.32" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="52" font-weight="700" fill="#ecad33">−92.4%</text>
+<text x="832" y="1421.84" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="400" fill="#c2bbb0">measured run time</text>
+<text x="832" y="1458.11" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#c2bbb0">+1,215.4% inverse-time rate</text>
+<rect x="1110" y="1326" width="515" height="155" rx="24" fill="#302d29"/>
+<text x="1367" y="1380.32" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="52" font-weight="700" fill="#ecad33">−50%</text>
+<text x="1367" y="1421.84" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="400" fill="#c2bbb0">device action attempts</text>
+<text x="1367" y="1458.11" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#c2bbb0">8 → 4 actions</text>
+<rect x="1645" y="1326" width="515" height="155" rx="24" fill="#302d29"/>
+<text x="1902" y="1380.32" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="52" font-weight="700" fill="#ecad33">−90.9%</text>
+<text x="1902" y="1421.84" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="400" fill="#c2bbb0">assistant tool calls</text>
+<text x="1902" y="1458.11" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#c2bbb0">11 → 1 calls</text>
+<text x="1100" y="1520.11" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#c2bbb0">Source:docs/agent-loop-optimization.md -- 9 instrumental runs of the same task, October 26th, 2026, physical Samsung S23+.</text>
+</svg>
